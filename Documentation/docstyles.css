@@ -1,0 +1,19 @@
+/* Object Pascal Default Documentation Styles */
+A:active { color: maroon; }
+A:link { color: Navy; }
+A:visited { color: Green; }
+A:Hover { background-color : blue; color : yellow; }
+BODY { background-color : #FFFFFF /*#99CCFF*/ }
+H1 { font-family : times } 
+H2 { font-family : times; color : navy } 
+H3 { font-family : times; color : navy; } 
+H4 { font-family : times; color : navy; margin : 1em; } 
+P.Comment { color : navy }
+/** TABLE.AToZIndex {font-size: xx-small} **/
+TABLE.Navigation { background-color : #EEEEFF } 
+TABLE.Sub { margin-left : 18 } 
+TABLE.Tags { color : maroon } 
+TD.SpecialTag {color : purple; font-weight: bold; text-decoration: underline}
+THEAD { font-weight : bold } 
+THEAD.Main { background-color : #CCCCFF } 
+THEAD.Sub { background-color : cyan } 

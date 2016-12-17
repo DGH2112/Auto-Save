@@ -1,0 +1,36 @@
+[Setup]
+IncBuild=1
+CopyVersionInfoFrom=
+ExcludedResExts=.dcr
+EnabledVersionInfo=1
+IncludeInProject=1
+CompileWithBRCC32=0
+MajorVer=2
+MinorVer=0
+ReleaseVer=0
+BuildVer=120
+ResourceName=IDEAutoSaveITHVerInfo
+WarnBefore=0
+WarnAfter=0
+
+[Zipping]
+Enabled=1
+ZipFile=D:\HoylD\Web Page\Zips\IDEAutoSave.zip
+BasePath=D:\HoylD\Borland Studio Projects\
+ExclusionFiles=
+
+[Additional Zip Files]
+Item0=D:\HoylD\Borland Studio Projects\IDE Addins\AutoSave\Images\*.bmp
+
+[VersionInfo]
+CompanyName=Season's Fall Music
+FileDescription=IDEAutoSave
+FileVersion=2.0.0.120
+InternalName=IDEAutoSave
+LegalCopyright=Season's Fall Music
+LegalTrademarks=Season's Fall Music
+OriginalFilename=IDEAutoSave
+ProductName=IDEAutoSave
+ProductVersion=2.0
+Comments=IDE AutoSave - An auto save wizard for RAD Studio
+

@@ -1,0 +1,3 @@
+SplashScreenBitMap24x24 BITMAP "..\Images\SplashScreenIcon24x24.bmp"
+SplashScreenBitMap48x48 BITMAP "..\Images\SplashScreenIcon48x48.bmp"
+
