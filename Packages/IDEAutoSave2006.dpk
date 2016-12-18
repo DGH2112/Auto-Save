@@ -29,8 +29,6 @@ package IDEAutoSave2006;
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'IDE AutoSave 2.0 for RAD Studio'}
 {$IMPLICITBUILD OFF}
-{%TogetherDiagram '$(SystemRoot)\system32\ModelSupport_IDEAutoSave2006\default.txaPackage'}
-{%TogetherDiagram 'ModelSupport_IDEAutoSave2006\default.txaPackage'}
 
 requires
   vcl,
@@ -38,7 +36,12 @@ requires
   DesignIDE;
 
 contains
-  AutoSaveModule in 'AutoSaveModule.pas',
-  AutoSaveOptionsForm in 'AutoSaveOptionsForm.pas' {frmAutoSaveOptions};
+  DGHIDEAutoSaveModule in '..\Source\DGHIDEAutoSaveModule.pas',
+  DGHIDEAutoSaveOptionsForm in '..\Source\DGHIDEAutoSaveOptionsForm.pas' {frmAutoSaveOptions},
+  DGHIDEAutoSaveMainWizardInterface in '..\Source\DGHIDEAutoSaveMainWizardInterface.pas',
+  DGHIDEAutoSaveUtilities in '..\Source\DGHIDEAutoSaveUtilities.pas',
+  DGHIDEAutoSaveIDEOptionsInterface in '..\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',
+  DGHIDEAutoSaveOptionsFrame in '..\Source\DGHIDEAutoSaveOptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
+  DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas';
 
 end.
