@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Apr 2016
+  @Date    18 Dec 2016
 
 **)
 Unit DGHIDEAutoSaveIDEOptionsInterface;
@@ -17,7 +17,7 @@ Uses
   Forms,
   DGHIDEAutoSaveOptionsFrame;
 
-{$INCLUDE '..\..\..\Library\CompilerDefinitions.inc'}
+{$INCLUDE CompilerDefinitions.inc}
 
 {$IFDEF DXE00}
 Type

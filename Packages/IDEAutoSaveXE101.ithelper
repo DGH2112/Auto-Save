@@ -7,8 +7,8 @@ IncludeInProject=1
 CompileWithBRCC32=0
 MajorVer=2
 MinorVer=0
-ReleaseVer=0
-BuildVer=124
+ReleaseVer=1
+BuildVer=125
 ResourceName=IDEAutoSaveITHVerInfo
 WarnBefore=0
 WarnAfter=0
@@ -21,14 +21,14 @@ ExclusionFiles=
 
 [VersionInfo]
 CompanyName=Season's Fall Music
-FileDescription=IDEAutoSave
-FileVersion=2.0.0.124
+FileDescription=IDE AutoSave - An auto save wizard for RAD Studio
+FileVersion=2.0.1.125
 InternalName=IDEAutoSave
 LegalCopyright=Season's Fall Music
 LegalTrademarks=Season's Fall Music
 OriginalFilename=IDEAutoSave
 ProductName=IDEAutoSave
-ProductVersion=2.0
+ProductVersion=2.0a
 Comments=IDE AutoSave - An auto save wizard for RAD Studio
 
 [Additional Zip Files]

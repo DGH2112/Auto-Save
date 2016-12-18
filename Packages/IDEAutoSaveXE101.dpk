@@ -1,7 +1,11 @@
 (**
-  
+
   Package for the Auto Save IDE addin.
-  
+
+  @Author  David Hoyle
+  @Version 2.0
+  @Date    18 Dec 2016
+
 **)
 package IDEAutoSaveXE101;
 

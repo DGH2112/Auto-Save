@@ -4,7 +4,7 @@
 
   @Version 2.0
   @Author  David Hoyle
-  @Date    09 Apr 2016
+  @Date    18 Dec 2016
 
 **)
 Unit DGHIDEAutoSaveMainWizardInterface;
@@ -17,7 +17,7 @@ Uses
   Menus,
   DGHIDEAutoSaveIDEOptionsInterface;
 
-{$INCLUDE '..\..\..\Library\CompilerDefinitions.inc'}
+{$INCLUDE CompilerDefinitions.inc}
 
 Type
   (** This class represents a the open tools API wizard for the IDE auto save. **)
