@@ -90,9 +90,6 @@
     <DCCReference Include="AutoSaveOptionsForm.pas">
       <Form>frmAutoSaveOptions</Form>
     </DCCReference>
-    <None Include="$(SystemRoot)\system32\ModelSupport_IDEAutoSave2006\default.txaPackage" />
-    <None Include="$(SystemRoot)\system32\ModelSupport_IDEAutoSave2007\default.txaPackage" />
-    <None Include="ModelSupport_IDEAutoSave2007\default.txaPackage" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
 </Project>

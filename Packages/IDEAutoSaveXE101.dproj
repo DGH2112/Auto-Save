@@ -106,7 +106,7 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <DCC_Description>Delphi IDE AutoSave 2.0</DCC_Description>
         <Debugger_RunParams>-rIDEAutoSave</Debugger_RunParams>
-        <Debugger_HostApplication>C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bds.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>C:\Program Files (x86)\Embarcadero\Studio\18.0\bin\bds.exe</Debugger_HostApplication>
         <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
@@ -551,10 +551,6 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\DGHIDEAutoSaveSettings.pas"/>
-        <None Include="$(SystemRoot)\system32\ModelSupport_IDEAutoSave2006\default.txaPackage"/>
-        <None Include="$(SystemRoot)\system32\ModelSupport_IDEAutoSave2007\default.txaPackage"/>
-        <None Include="ModelSupport_IDEAutoSave2007\default.txaPackage"/>
-        <None Include="..\..\..\Library\IDEExpertSharedUtilities.inc"/>
         <RcCompile Include="..\Source\SplashScreenIcon.RC">
             <Form>SplashScreenIcon.res</Form>
         </RcCompile>

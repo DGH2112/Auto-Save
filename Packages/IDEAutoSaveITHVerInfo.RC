@@ -1,8 +1,8 @@
 LANGUAGE LANG_ENGLISH,SUBLANG_ENGLISH_US
 
 1 VERSIONINFO LOADONCALL MOVEABLE DISCARDABLE IMPURE
-FILEVERSION 2, 0, 1, 126
-PRODUCTVERSION 2, 0, 1, 126
+FILEVERSION 2, 0, 1, 127
+PRODUCTVERSION 2, 0, 1, 127
 FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 FILEOS VOS__WINDOWS32
 FILETYPE VFT_APP
@@ -13,7 +13,7 @@ FILETYPE VFT_APP
     {
      VALUE "CompanyName", "Season's Fall Music\000"
      VALUE "FileDescription", "IDE AutoSave - An auto save wizard for RAD Studio\000"
-     VALUE "FileVersion", "2.0.1.126\000"
+     VALUE "FileVersion", "2.0.1.127\000"
      VALUE "InternalName", "IDEAutoSave\000"
      VALUE "LegalCopyright", "Season's Fall Music\000"
      VALUE "LegalTrademarks", "Season's Fall Music\000"
