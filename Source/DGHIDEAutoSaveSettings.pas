@@ -4,8 +4,8 @@
   loaded and saved to the regsitry.
 
   @Author  David Hoyle
-  @Version 1.0
-  @Date    27 Mar 2016
+  @Version 1.1
+  @Date    01 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveSettings;
@@ -64,8 +64,16 @@ Const
   (** This constant represents the registry key the auto save settings are
       stored under. **)
   strRegistryKey = 'Software\Season''s Fall\Auto Save\';
-
-{TDGHIDEAutoSaveSettings}
+  (** A default valkue for the number of seconds before saving files. **)
+  iDefaultInterval = 300;
+  (** An INI Section name for thr settings. **)
+  strSetupINISection = 'Setup';
+  (** An INI Key Name for the AutoSave Interval. **)
+  strAutoSaveIntKey = 'AutoSaveInt';
+  (** An INI Key Name for the Prompt. **)
+  strPromptKey = 'Prompt';
+  (** An INI Key Name for the Enabled. **)
+  strEnabledKey = 'Enabled';
 
 (**
 
@@ -79,7 +87,7 @@ Constructor TDGHIDEAutoSaveSettings.Create;
 
 Begin
   FEnabled := False;
-  FInterval := 300;
+  FInterval := iDefaultInterval;
   FPrompt := True;
   LoadSettings;
 End;
@@ -110,15 +118,19 @@ End;
 **)
 Procedure TDGHIDEAutoSaveSettings.LoadSettings;
 
+Var
+  riniFile: TRegIniFile;
+
 Begin
-  With TRegIniFile.Create() Do
-    Try
-      FInterval := ReadInteger(strRegistryKey + 'Setup', 'AutoSaveInt', 300);
-      FPrompt := ReadBool(strRegistryKey + 'Setup', 'Prompt', True);
-      FEnabled := ReadBool(strRegistryKey + 'Setup', 'Enabled', True);
-    Finally
-      Free;
-    End;
+  riniFile := TRegIniFile.Create();
+  Try
+    FInterval := riniFile.ReadInteger(strRegistryKey + strSetupINISection, strAutoSaveIntKey,
+      iDefaultInterval);
+    FPrompt := riniFile.ReadBool(strRegistryKey + strSetupINISection, strPromptKey, True);
+    FEnabled := riniFile.ReadBool(strRegistryKey + strSetupINISection, strEnabledKey, True);
+  Finally
+    riniFile.Free;
+  End;
 End;
 
 (**
@@ -131,15 +143,18 @@ End;
 **)
 Procedure TDGHIDEAutoSaveSettings.SaveSettings;
 
+Var
+  riniFile: TRegIniFile;
+
 Begin
-  With TRegIniFile.Create() Do
-    Try
-      WriteInteger(strRegistryKey + 'Setup', 'AutoSaveInt', FInterval);
-      WriteBool(strRegistryKey + 'Setup', 'Prompt', FPrompt);
-      WriteBool(strRegistryKey + 'Setup', 'Enabled', FEnabled);
-    Finally
-      Free;
-    End;
+  riniFile := TRegIniFile.Create();
+  Try
+    riniFile.WriteInteger(strRegistryKey + strSetupINISection, strAutoSaveIntKey, FInterval);
+    riniFile.WriteBool(strRegistryKey + strSetupINISection, strPromptKey, FPrompt);
+    riniFile.WriteBool(strRegistryKey + strSetupINISection, strEnabledKey, FEnabled);
+  Finally
+    riniFile.Free;
+  End;
 End;
 
 (** Creates an instance of the applications options class. **)

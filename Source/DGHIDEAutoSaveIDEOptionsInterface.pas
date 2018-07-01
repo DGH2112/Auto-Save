@@ -4,8 +4,8 @@
   IDEs main option dialogue.
 
   @Author  David Hoyle
-  @Version 1.0
-  @Date    18 Dec 2016
+  @Version 1.1
+  @Date    01 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveIDEOptionsInterface;
@@ -56,6 +56,8 @@ Uses
   @postcon If the dialogue is accepted then the options frame settings are retreived and
            saved back to the applications options class.
 
+  @nocheck MissingCONSTInParam
+
   @param   Accepted as a Boolean
 
 **)
@@ -83,6 +85,8 @@ End;
   @precon  None.
   @postcon Checks the frame is the corrct frames and is so initialises the frame through
            its InitialiseFrame method.
+
+  @nocheck MissingCONSTInParam
 
   @param   AFrame as a TCustomFrame
 
@@ -129,8 +133,11 @@ End;
 **)
 Function TDGHIDEAutoSaveOptionsInterface.GetCaption: String;
 
+ResourceString
+  strIDEAutoSaveOptions = 'IDE Auto Save.Options';
+
 Begin
-  Result := 'IDE Auto Save.Options';
+  Result := strIDEAutoSaveOptions;
 End;
 
 (**

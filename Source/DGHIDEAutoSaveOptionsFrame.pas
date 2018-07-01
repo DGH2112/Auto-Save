@@ -3,9 +3,9 @@
   This module contains a frame which represent the auto save settings for editing the
   behaviour of the applications.
 
-  @Version 1.0
+  @Version 1.1
   @Author  David Hoyle
-  @Date    09 Apr 2016
+  @Date    01 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveOptionsFrame;
@@ -40,7 +40,7 @@ Type
     {Private declarations}
   Public
     {Public declarations}
-    Procedure InitialiseFrame(iInterval: Integer; boolPrompt, boolEnabled: Boolean);
+    Procedure InitialiseFrame(Const iInterval: Integer; Const boolPrompt, boolEnabled: Boolean);
     Procedure FinaliseFrame(Var iInterval: Integer; Var boolPrompt, boolEnabled: Boolean);
   End;
 
@@ -92,19 +92,19 @@ End;
 
 (**
 
-  This method initialises the interface with the given settings. This should be called
-  before the for / option page is displayed to show these options.
+  This method initialises the interface with the given settings. This should be called before the for / 
+  option page is displayed to show these options.
 
   @precon  None.
   @postcon Initialises the interface with the given settings.
 
-  @param   iInterval   as an Integer
-  @param   boolPrompt  as a Boolean
-  @param   boolEnabled as a Boolean
+  @param   iInterval   as an Integer as a constant
+  @param   boolPrompt  as a Boolean as a constant
+  @param   boolEnabled as a Boolean as a constant
 
 **)
-Procedure TfmIDEAutoSaveOptions.InitialiseFrame(iInterval: Integer;
-  boolPrompt, boolEnabled: Boolean);
+Procedure TfmIDEAutoSaveOptions.InitialiseFrame(Const iInterval: Integer;
+  Const boolPrompt, boolEnabled: Boolean);
 
 Begin
   udAutoSaveInterval.Position := iInterval;

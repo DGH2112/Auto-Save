@@ -3,8 +3,8 @@
   This module provide an Option dialogue for the auto save options (@note The interface
   controls are hosted in frame for reuse in the IDEs options pages).
 
-  @Date    09 Apr 2016
-  @Version 1.0
+  @Date    01 Jul 2018
+  @Version 1.1
   @Author  David Hoyle
 
 **)
@@ -64,23 +64,24 @@ Class Procedure TfrmAutoSaveOptions.Execute;
 Var
   iInterval : Integer;
   boolEnabled, boolPrompt : Boolean;
+  F: TfrmAutoSaveOptions;
 
 Begin
-  With TfrmAutoSaveOptions.Create(Nil) Do
+  F := TfrmAutoSaveOptions.Create(Nil);
     Try
       iInterval := AppOptions.Interval;
       boolEnabled := AppOptions.Enabled;
       boolPrompt := AppOptions.Prompt;
-      FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled);
-      If ShowModal = mrOK Then
+      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled);
+      If F.ShowModal = mrOK Then
         Begin
-          FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
+          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
           AppOptions.Interval := iInterval;
           AppOptions.Enabled := boolEnabled;
           AppOptions.Prompt := boolPrompt;
         End;
     Finally
-      Free;
+      F.Free;
     End;
 End;
 

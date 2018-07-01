@@ -3,8 +3,8 @@
   This method contains a Delphi IDE wizard that auto saves the modules at a
   specified interval.
 
-  @Date    18 Dec 2016
-  @Version 1.0
+  @Date    01 Jul 2018
+  @Version 2.1
   @Author  David Hoyle
 
 **)
@@ -69,6 +69,10 @@ Var
 Const
   (** A constant string to represent bug fix letters. **)
   strRevision : String = ' abcdefghijklmnopqrstuvwxyz';
+  (** A constant name for the 24x24 splash screen bitmap in the packages resources. **)
+  strSplashScreenBitMap24x24 = 'SplashScreenBitMap24x24';
+  (** A constant name for the 48x48 splash screen bitmap in the packages resources. **)
+  strSplashScreenBitMap48x48 = 'SplashScreenBitMap48x48';
 
 ResourceString
   (** A resource string for the splash screen name. **)
@@ -86,11 +90,15 @@ ResourceString
   @precon  None.
   @postcon Returns the main wizard template instance.
 
-  @param   WizardType as a TWizardType
+  @param   WizardType as a TWizardType as a Constant
   @return  a TDGHAutoSaveWizard
 
 **)
-Function InitialiseWizard(WizardType : TWizardType) : TDGHAutoSaveWizard;
+Function InitialiseWizard(Const WizardType : TWizardType) : TDGHAutoSaveWizard;
+
+ResourceString
+  strAutoSaveWizardForRADStudioIDE = 'An auto save wizard for the RAD Studio IDE.';
+  strSKUBuild = 'SKU Build %d.%d.%d.%d';
 
 Var
   Svcs : IOTAServices;
@@ -101,20 +109,49 @@ Begin
   Application.Handle := Svcs.GetParentHandle;
   {$IFDEF D2005}
   // Aboutbox plugin
-  bmSplashScreen48x48 := LoadBitmap(hInstance, 'SplashScreenBitMap48x48');
-  With VersionInfo Do
-    iAboutPluginIndex := (BorlandIDEServices As IOTAAboutBoxServices).AddPluginInfo(
-      Format(strSplashScreenName, [iMajor, iMinor, Copy(strRevision, iBugFix + 1, 1), Application.Title]),
-      'An auto save wizard for the RAD Studio IDE.',
-      bmSplashScreen48x48,
-      False,
-      Format(strSplashScreenBuild, [iMajor, iMinor, iBugfix, iBuild]),
-      Format('SKU Build %d.%d.%d.%d', [iMajor, iMinor, iBugfix, iBuild]));
+  bmSplashScreen48x48 := LoadBitmap(hInstance, strSplashScreenBitMap48x48);
+  iAboutPluginIndex := (BorlandIDEServices As IOTAAboutBoxServices).AddPluginInfo(
+    Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision,
+      VersionInfo.iBugFix + 1, 1), Application.Title]),
+    strAutoSaveWizardForRADStudioIDE,
+    bmSplashScreen48x48,
+    False,
+    Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,
+      VersionInfo.iBuild]),
+    Format(strSKUBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,
+      VersionInfo.iBuild]));
   {$ENDIF}
   // Create Wizard / Menu Wizard
   Result := TDGHAutoSaveWizard.Create;
   If WizardType = wtPackageWizard Then // Only register main wizard this way if PACKAGE
     iWizardIndex := (BorlandIDEServices As IOTAWizardServices).AddWizard(Result);
+End;
+
+(**
+
+  This method is called by the IDE for DLLs in order to initialise the wizard /
+  expert.
+
+  @precon  None.
+  @postcon Initialises the wizard / expert.
+
+  @nocheck MissingCONSTInParam
+  @nohint  Terminate
+  
+  @param   BorlandIDEServices as an IBorlandIDEServices as a constant
+  @param   RegisterProc       as a TWizardRegisterProc
+  @param   Terminate          as a TWizardTerminateProc as a reference
+  @return  a Boolean
+
+**)
+Function InitWizard(Const BorlandIDEServices : IBorlandIDEServices;
+  RegisterProc : TWizardRegisterProc;
+  var Terminate: TWizardTerminateProc) : Boolean; StdCall;
+
+Begin
+  Result := BorlandIDEServices <> Nil;
+  If Result Then
+    RegisterProc(InitialiseWizard(wtDLLWizard));
 End;
 
 (**
@@ -132,30 +169,6 @@ begin
   InitialiseWizard(wtPackageWizard);
 end;
 
-(**
-
-  This method is called by the IDE for DLLs in order to initialise the wizard /
-  expert.
-
-  @precon  None.
-  @postcon Initialises the wizard / expert.
-
-  @param   BorlandIDEServices as an IBorlandIDEServices as a constant
-  @param   RegisterProc       as a TWizardRegisterProc
-  @param   Terminate          as a TWizardTerminateProc as a reference
-  @return  a Boolean
-
-**)
-Function InitWizard(Const BorlandIDEServices : IBorlandIDEServices;
-  RegisterProc : TWizardRegisterProc;
-  var Terminate: TWizardTerminateProc) : Boolean; StdCall;
-
-Begin
-  Result := BorlandIDEServices <> Nil;
-  If Result Then
-    RegisterProc(InitialiseWizard(wtDLLWizard));
-End;
-
 (** Get the modules building information from its resource and display an item
     in the D2005+ splash screen. **)
 Initialization
@@ -163,9 +176,9 @@ Initialization
   BuildNumber(VersionInfo);
   // Add Splash Screen
   {$IFDEF D2007}
-  bmSplashScreen24x24 := LoadBitmap(hInstance, 'SplashScreenBitMap24x24');
+  bmSplashScreen24x24 := LoadBitmap(hInstance, strSplashScreenBitMap24x24);
   {$ELSE}
-  bmSplashScreen48x48 := LoadBitmap(hInstance, 'SplashScreenBitMap48x48');
+  bmSplashScreen48x48 := LoadBitmap(hInstance, strSplashScreenBitMap48x48);
   {$ENDIF}
   With VersionInfo Do
     (SplashScreenServices As IOTASplashScreenServices).AddPluginBitmap(

@@ -2,9 +2,9 @@
 
   This module contains a class to represent the experts main wizard interface.
 
-  @Version 2.0
+  @Version 2.1
   @Author  David Hoyle
-  @Date    18 Dec 2016
+  @Date    01 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveMainWizardInterface;
@@ -50,8 +50,6 @@ Uses
   DGHIDEAutoSaveOptionsForm,
   DGHIDEAutoSaveSettings;
 
-{TDGHAutoSave}
-
 (**
 
   This is the constructor method for the TDGHAutoSavewizard class.
@@ -63,10 +61,13 @@ Uses
 **)
 Constructor TDGHAutoSaveWizard.Create;
 
+Const
+  iOneSecond = 1000;
+
 Begin
   FCounter := 0;
   FTimer := TTimer.Create(Nil);
-  FTimer.Interval := 1000;
+  FTimer.Interval := iOneSecond;
   FTimer.OnTimer := TimerEvent;
   FTimer.Enabled := True;
   {$IFDEF DXE00}
@@ -105,9 +106,12 @@ End;
 **)
 Procedure TDGHAutoSaveWizard.Execute;
 
+ResourceString
+  strIDEAutoSaveOptions = 'IDE Auto Save.Options';
+
 Begin
   {$IFDEF DXE00}
-  (BorlandIDEServices As IOTAServices).GetEnvironmentOptions.EditOptions('', 'IDE Auto Save.Options');
+  (BorlandIDEServices As IOTAServices).GetEnvironmentOptions.EditOptions('', strIDEAutoSaveOptions);
   {$ELSE}
   TfrmAutoSaveOptions.Execute;
   {$ENDIF}
@@ -126,8 +130,11 @@ End;
 **)
 Function TDGHAutoSaveWizard.GetIDString: String;
 
+ResourceString
+  strSeasonFallDGHAutoSave = 'Season''s Fall.DGH Auto Save';
+
 Begin
-  Result := 'Season''s Fall.DGH Auto Save';
+  Result := strSeasonFallDGHAutoSave;
 End;
 
 (**
@@ -142,8 +149,11 @@ End;
 **)
 Function TDGHAutoSaveWizard.GetMenuText: String;
 
+ResourceString
+  strIDEAutoSaveOptions = 'IDE AutoSave Options...';
+
 Begin
-  Result := 'IDE AutoSave Options...';
+  Result := strIDEAutoSaveOptions;
 End;
 
 (**
@@ -158,8 +168,11 @@ End;
 **)
 Function TDGHAutoSaveWizard.GetName: String;
 
+ResourceString
+  strDGHAutoSave = 'DGH Auto Save.';
+
 Begin
-  Result := 'DGH Auto Save.';
+  Result := strDGHAutoSave;
 End;
 
 (**
@@ -178,6 +191,31 @@ Begin
   Result := [wsEnabled];
 End;
 
+
+(**
+
+  This method iterators the editor buffer checking for modified files. If one is modified
+  it save the file. If Prompt is true then you are prompted to save the file else it is
+  automatically saved.
+
+  @precon  None.
+  @postcon Iterates the files open in the IDE and if they are modified saves the files.
+
+**)
+Procedure TDGHAutoSaveWizard.SaveModifiedFiles;
+
+Var
+  Iterator: IOTAEditBufferIterator;
+  i: Integer;
+
+Begin
+  If (BorlandIDEServices As IOTAEditorServices).GetEditBufferIterator(Iterator) Then
+    Begin
+      For i := 0 To Iterator.Count - 1 Do
+        If Iterator.EditBuffers[i].IsModified Then
+          Iterator.EditBuffers[i].Module.Save(False, Not AppOptions.Prompt);
+    End;
+End;
 
 (**
 
@@ -206,32 +244,6 @@ Begin
   Finally
     FTimer.Enabled := True;
   End;
-End;
-
-(**
-
-  This method iterators the editor buffer checking for modified files. If one is modified
-  it save the file. If Prompt is true then you are prompted to save the file else it is
-  automatically saved.
-
-  @precon  None.
-  @postcon Iterates the files open in the IDE and if they are modified saves the files.
-
-**)
-Procedure TDGHAutoSaveWizard.SaveModifiedFiles;
-
-Var
-  Iterator: IOTAEditBufferIterator;
-  i: Integer;
-
-Begin
-  If (BorlandIDEServices As IOTAEditorServices).GetEditBufferIterator
-    (Iterator) Then
-    Begin
-      For i := 0 To Iterator.Count - 1 Do
-        If Iterator.EditBuffers[i].IsModified Then
-          Iterator.EditBuffers[i].Module.Save(False, Not AppOptions.Prompt);
-    End;
 End;
 
 End.
