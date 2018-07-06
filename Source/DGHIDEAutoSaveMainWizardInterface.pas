@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    01 Jul 2018
+  @Date    06 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveMainWizardInterface;
@@ -48,7 +48,8 @@ Uses
   Controls,
   SysUtils,
   DGHIDEAutoSaveOptionsForm,
-  DGHIDEAutoSaveSettings;
+  DGHIDEAutoSaveSettings,
+  DGHAutoSave.SplashScreen;
 
 (**
 
@@ -65,6 +66,7 @@ Const
   iOneSecond = 1000;
 
 Begin
+  AddSplashScreen;
   FCounter := 0;
   FTimer := TTimer.Create(Nil);
   FTimer.Interval := iOneSecond;

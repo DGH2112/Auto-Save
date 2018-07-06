@@ -48,6 +48,9 @@ contains
   DGHIDEAutoSaveUtilities in '..\Source\DGHIDEAutoSaveUtilities.pas',
   DGHIDEAutoSaveIDEOptionsInterface in '..\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',
   DGHIDEAutoSaveOptionsFrame in '..\Source\DGHIDEAutoSaveOptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
-  DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas';
+  DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas',
+  DGHAutoSave.SplashScreen in '..\Source\DGHAutoSave.SplashScreen.pas',
+  DGHAutoSave.ResourceStrings in '..\Source\DGHAutoSave.ResourceStrings.pas',
+  DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas';
 
 end.

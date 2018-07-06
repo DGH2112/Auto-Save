@@ -3,7 +3,7 @@
   This method contains a Delphi IDE wizard that auto saves the modules at a
   specified interval.
 
-  @Date    01 Jul 2018
+  @Date    06 Jul 2018
   @Version 2.1
   @Author  David Hoyle
 
@@ -32,11 +32,13 @@ Exports
 Implementation
 
 Uses
+  System.SysUtils,
+  WinAPI.Windows,
+  VCL.Forms,
   DGHIDEAutoSaveUtilities,
-  Windows,
   DGHIDEAutoSaveMainWizardInterface,
-  Forms,
-  SysUtils;
+  DGHAutoSave.ResourceStrings,
+  DGHAutoSave.Constants;
 
 Type
   (** A type to distinguish between packages and DLL experts. **)
@@ -47,39 +49,15 @@ Const
   iWizardFailState = -1;
 
 Var
-  {$IFDEF D2005}
-  (** A variable to hold the module`s version information. **)
-  VersionInfo            : TVersionInfo;
-  {$IFDEF D2007}
-  (** A varaible to hold a reference to the splash screen bitmap. **)
-  bmSplashScreen24x24    : HBITMAP;
-  {$ENDIF}
-  (** A varaible to hold a reference to the splash screen bitmap. **)
-  bmSplashScreen48x48    : HBITMAP;
-  {$ENDIF}
   (** This is an integer passed back by the IDE want the wizard is installed.
       it is needed when the wizard is uninstalled. **)
   iWizardIndex: Integer = iWizardFailState;
-  {$IFDEF D0006}
   (** A varaible for referencing the About Plugin interface. **)
   iAboutPluginIndex      : Integer = iWizardFailState;
-  {$ENDIF}
 
-{$IFDEF D2005}
 Const
-  (** A constant string to represent bug fix letters. **)
-  strRevision : String = ' abcdefghijklmnopqrstuvwxyz';
-  (** A constant name for the 24x24 splash screen bitmap in the packages resources. **)
-  strSplashScreenBitMap24x24 = 'SplashScreenBitMap24x24';
   (** A constant name for the 48x48 splash screen bitmap in the packages resources. **)
-  strSplashScreenBitMap48x48 = 'SplashScreenBitMap48x48';
-
-ResourceString
-  (** A resource string for the splash screen name. **)
-  strSplashScreenName = 'IDE AutoSave %d.%d%s for %s';
-  (** A resource string for the splash screen build number. **)
-  strSplashScreenBuild = 'Freeware by David Hoyle (Build %d.%d.%d.%d)';
-{$ENDIF}
+  strSplashScreenBitMap = 'SplashScreenBitMap48x48';
 
 (**
 
@@ -102,25 +80,26 @@ ResourceString
 
 Var
   Svcs : IOTAServices;
+  bmSplashScreen : HBITMAP;
+  VersionInfo: TVersionInfo;
 
 Begin
   Svcs := BorlandIDEServices As IOTAServices;
   ToolsAPI.BorlandIDEServices := BorlandIDEServices;
   Application.Handle := Svcs.GetParentHandle;
-  {$IFDEF D2005}
   // Aboutbox plugin
-  bmSplashScreen48x48 := LoadBitmap(hInstance, strSplashScreenBitMap48x48);
+  BuildNumber(VersionInfo);
+  bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
   iAboutPluginIndex := (BorlandIDEServices As IOTAAboutBoxServices).AddPluginInfo(
     Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision,
       VersionInfo.iBugFix + 1, 1), Application.Title]),
     strAutoSaveWizardForRADStudioIDE,
-    bmSplashScreen48x48,
+    bmSplashScreen,
     False,
     Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,
       VersionInfo.iBuild]),
     Format(strSKUBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,
       VersionInfo.iBuild]));
-  {$ENDIF}
   // Create Wizard / Menu Wizard
   Result := TDGHAutoSaveWizard.Create;
   If WizardType = wtPackageWizard Then // Only register main wizard this way if PACKAGE
@@ -172,33 +151,12 @@ end;
 (** Get the modules building information from its resource and display an item
     in the D2005+ splash screen. **)
 Initialization
-  {$IFDEF D2005}
-  BuildNumber(VersionInfo);
-  // Add Splash Screen
-  {$IFDEF D2007}
-  bmSplashScreen24x24 := LoadBitmap(hInstance, strSplashScreenBitMap24x24);
-  {$ELSE}
-  bmSplashScreen48x48 := LoadBitmap(hInstance, strSplashScreenBitMap48x48);
-  {$ENDIF}
-  With VersionInfo Do
-    (SplashScreenServices As IOTASplashScreenServices).AddPluginBitmap(
-      Format(strSplashScreenName, [iMajor, iMinor, Copy(strRevision, iBugFix + 1, 1), Application.Title]),
-      {$IFDEF D2007}
-      bmSplashScreen24x24,
-      {$ELSE}
-      bmSplashScreen48x48,
-      {$ENDIF}
-      False,
-      Format(strSplashScreenBuild, [iMajor, iMinor, iBugfix, iBuild]));
-  {$ENDIF}
 (** Remove all wizards the have been created. **)
 Finalization
   // Remove Wizard Interface
   If iWizardIndex > iWizardFailState Then
     (BorlandIDEServices As IOTAWizardServices).RemoveWizard(iWizardIndex);
-  {$IFDEF D2005}
   // Remove Aboutbox Plugin Interface
   If iAboutPluginIndex > iWizardFailState Then
     (BorlandIDEServices As IOTAAboutBoxServices).RemovePluginInfo(iAboutPluginIndex);
-  {$ENDIF}
 End.

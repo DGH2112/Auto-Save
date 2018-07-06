@@ -162,7 +162,7 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\IDEAutoSaveXE102.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\IDEAutoSaveXE102.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>IDEAutoSaveXE102.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -550,6 +550,9 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\DGHIDEAutoSaveSettings.pas"/>
+        <DCCReference Include="..\Source\DGHAutoSave.SplashScreen.pas"/>
+        <DCCReference Include="..\Source\DGHAutoSave.ResourceStrings.pas"/>
+        <DCCReference Include="..\Source\DGHAutoSave.Constants.pas"/>
         <RcCompile Include="..\Source\SplashScreenIcon.RC">
             <Form>SplashScreenIcon.res</Form>
         </RcCompile>
