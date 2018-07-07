@@ -8,14 +8,14 @@
   @Date    07 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveIDEOptionsInterface;
+Unit DGHIDEAutoSave.IDEOptionsInterface;
 
 Interface
 
 Uses
   ToolsAPI,
-  Forms,
-  DGHIDEAutoSaveOptionsFrame;
+  VCL.Forms,
+  DGHIDEAutoSave.OptionsFrame;
 
 {$INCLUDE CompilerDefinitions.inc}
 
@@ -43,7 +43,8 @@ Implementation
 {TDGHAutoSaveOptions}
 
 Uses
-  DGHIDEAutoSaveSettings, DGHAutoSave.Types;
+  DGHAutoSave.Types,
+  DGHIDEAutoSave.Settings;
 
 {$IFDEF DXE00}
 (**

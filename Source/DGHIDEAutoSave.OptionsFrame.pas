@@ -8,24 +8,24 @@
   @Date    07 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveOptionsFrame;
+Unit DGHIDEAutoSave.OptionsFrame;
 
 Interface
 
 Uses
-  Windows,
-  Messages,
-  SysUtils,
-  Variants,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  Dialogs,
-  StdCtrls,
-  ComCtrls,
-  Buttons,
-  Vcl.ExtCtrls,
+  WinAPI.Windows,
+  WinAPI.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  VCL.Graphics,
+  VCL.Controls,
+  VCL.Forms,
+  VCL.Dialogs,
+  VCL.StdCtrls,
+  VCL.ComCtrls,
+  VCL.Buttons,
+  VCL.ExtCtrls,
   DGHAutoSave.Types;
 
 Type

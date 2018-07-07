@@ -7,15 +7,15 @@
   @Date    07 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveMainWizardInterface;
+Unit DGHIDEAutoSave.Wizard;
 
 Interface
 
 Uses
   ToolsAPI,
-  Extctrls,
-  Menus,
-  DGHIDEAutoSaveIDEOptionsInterface;
+  VCL.Extctrls,
+  VCL.Menus,
+  DGHIDEAutoSave.IDEOptionsInterface;
 
 {$INCLUDE CompilerDefinitions.inc}
 
@@ -44,12 +44,11 @@ Type
 Implementation
 
 Uses
-  Dialogs,
-  Controls,
-  SysUtils,
-  DGHIDEAutoSaveOptionsForm,
-  DGHIDEAutoSaveSettings,
-  DGHAutoSave.SplashScreen, DGHAutoSave.AboutBox;
+  System.SysUtils,
+  DGHIDEAutoSave.OptionsForm,
+  DGHIDEAutoSave.Settings,
+  DGHAutoSave.SplashScreen,
+  DGHAutoSave.AboutBox;
 
 (**
 

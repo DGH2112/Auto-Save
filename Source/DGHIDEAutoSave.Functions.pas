@@ -4,10 +4,10 @@
 
   @Version 2.0
   @Author  David Hoyle
-  @Date    01 Jul 2018
+  @Date    07 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveUtilities;
+Unit DGHIDEAutoSave.Functions;
 
 Interface
 

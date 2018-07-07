@@ -8,24 +8,24 @@
   @Author  David Hoyle
 
 **)
-Unit DGHIDEAutoSaveOptionsForm;
+Unit DGHIDEAutoSave.OptionsForm;
 
 Interface
 
 Uses
-  Windows,
-  Messages,
-  SysUtils,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  Dialogs,
-  StdCtrls,
-  Buttons,
-  ComCtrls,
-  DGHIDEAutoSaveOptionsFrame,
-  ExtCtrls;
+  WinAPI.Windows,
+  WinAPI.Messages,
+  System.SysUtils,
+  System.Classes,
+  VCL.Graphics,
+  VCL.Controls,
+  VCL.Forms,
+  VCL.Dialogs,
+  VCL.StdCtrls,
+  VCL.Buttons,
+  VCL.ComCtrls,
+  DGHIDEAutoSave.OptionsFrame,
+  VCL.ExtCtrls;
 
 Type
   (** This class represent an options dialogue for the autosave feature. **)
@@ -45,11 +45,10 @@ Type
 Implementation
 
 Uses
-  DGHIDEAutoSaveSettings, DGHAutoSave.Types;
+  DGHAutoSave.Types,
+  DGHIDEAutoSave.Settings;
 
 {$R *.DFM}
-
-{TfrmAutoSaveOptions}
 
 (**
 

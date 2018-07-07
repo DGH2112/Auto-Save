@@ -9,7 +9,7 @@
 
 **)
 Unit
-  DGHIDEAutoSaveModule;
+  DGHIDEAutoSave.InitializationModule;
 
 Interface
 
@@ -32,11 +32,7 @@ Exports
 Implementation
 
 Uses
-  System.SysUtils,
-  WinAPI.Windows,
-  VCL.Forms,
-  DGHIDEAutoSaveUtilities,
-  DGHIDEAutoSaveMainWizardInterface;
+  DGHIDEAutoSave.Wizard;
 
 (**
 

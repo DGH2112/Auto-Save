@@ -30,7 +30,7 @@ Uses
   System.SysUtils,
   WinApi.Windows,
   VCL.Forms,
-  DGHIDEAutoSaveUtilities,
+  DGHIDEAutoSave.Functions,
   DGHAutoSave.ResourceStrings,
   DGHAutoSave.Constants;
 

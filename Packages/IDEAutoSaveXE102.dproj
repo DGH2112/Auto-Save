@@ -538,18 +538,18 @@
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="DesignIDE.dcp"/>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveModule.pas"/>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveOptionsForm.pas">
+        <DCCReference Include="..\Source\DGHIDEAutoSave.InitializationModule.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.OptionsForm.pas">
             <Form>frmAutoSaveOptions</Form>
         </DCCReference>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveMainWizardInterface.pas"/>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveUtilities.pas"/>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveIDEOptionsInterface.pas"/>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveOptionsFrame.pas">
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Wizard.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Functions.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.IDEOptionsInterface.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.OptionsFrame.pas">
             <Form>fmIDEAutoSaveOptions</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\DGHIDEAutoSaveSettings.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Settings.pas"/>
         <DCCReference Include="..\Source\DGHAutoSave.SplashScreen.pas"/>
         <DCCReference Include="..\Source\DGHAutoSave.ResourceStrings.pas"/>
         <DCCReference Include="..\Source\DGHAutoSave.Constants.pas"/>

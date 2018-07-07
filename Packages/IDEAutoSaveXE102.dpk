@@ -3,7 +3,7 @@
   Package for the Auto Save IDE addin.
 
   @Author  David Hoyle
-  @Version 2.0
+  @Version 2.1
   @Date    07 Jul 2018
 
 **)
@@ -42,13 +42,13 @@ requires
   DesignIDE;
 
 contains
-  DGHIDEAutoSaveModule in '..\Source\DGHIDEAutoSaveModule.pas',
-  DGHIDEAutoSaveOptionsForm in '..\Source\DGHIDEAutoSaveOptionsForm.pas' {frmAutoSaveOptions},
-  DGHIDEAutoSaveMainWizardInterface in '..\Source\DGHIDEAutoSaveMainWizardInterface.pas',
-  DGHIDEAutoSaveUtilities in '..\Source\DGHIDEAutoSaveUtilities.pas',
-  DGHIDEAutoSaveIDEOptionsInterface in '..\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',
-  DGHIDEAutoSaveOptionsFrame in '..\Source\DGHIDEAutoSaveOptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
-  DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas',
+  DGHIDEAutoSave.InitializationModule in '..\Source\DGHIDEAutoSave.InitializationModule.pas',
+  DGHIDEAutoSave.OptionsForm in '..\Source\DGHIDEAutoSave.OptionsForm.pas' {frmAutoSaveOptions},
+  DGHIDEAutoSave.Wizard in '..\Source\DGHIDEAutoSave.Wizard.pas',
+  DGHIDEAutoSave.Function in '..\Source\DGHIDEAutoSave.Function.pas',
+  DGHIDEAutoSave.IDEOptionsInterface in '..\Source\DGHIDEAutoSave.IDEOptionsInterface.pas',
+  DGHIDEAutoSave.OptionsFrame in '..\Source\DGHIDEAutoSave.OptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
+  DGHIDEAutoSave.Settings in '..\Source\DGHIDEAutoSave.Settings.pas',
   DGHAutoSave.SplashScreen in '..\Source\DGHAutoSave.SplashScreen.pas',
   DGHAutoSave.ResourceStrings in '..\Source\DGHAutoSave.ResourceStrings.pas',
   DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas',

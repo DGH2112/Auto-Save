@@ -8,7 +8,7 @@
   @Date    07 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveSettings;
+Unit DGHIDEAutoSave.Settings;
 
 Interface
 
