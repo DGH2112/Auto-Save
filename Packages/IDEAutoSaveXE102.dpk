@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 2.0
-  @Date    18 Dec 2016
+  @Date    07 Jul 2018
 
 **)
 package IDEAutoSaveXE102;
@@ -51,6 +51,7 @@ contains
   DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas',
   DGHAutoSave.SplashScreen in '..\Source\DGHAutoSave.SplashScreen.pas',
   DGHAutoSave.ResourceStrings in '..\Source\DGHAutoSave.ResourceStrings.pas',
-  DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas';
+  DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas',
+  DGHAutoSave.AboutBox in '..\Source\DGHAutoSave.AboutBox.pas';
 
 end.

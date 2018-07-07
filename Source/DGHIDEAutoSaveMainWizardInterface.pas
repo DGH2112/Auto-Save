@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    06 Jul 2018
+  @Date    07 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveMainWizardInterface;
@@ -49,7 +49,7 @@ Uses
   SysUtils,
   DGHIDEAutoSaveOptionsForm,
   DGHIDEAutoSaveSettings,
-  DGHAutoSave.SplashScreen;
+  DGHAutoSave.SplashScreen, DGHAutoSave.AboutBox;
 
 (**
 
@@ -66,7 +66,8 @@ Const
   iOneSecond = 1000;
 
 Begin
-  AddSplashScreen;
+  TDGHAutoSaveSplashScreen.AddSplashScreen;
+  TDGHIDEAutoSaveAboutBox.InstallAboutBox;
   FCounter := 0;
   FTimer := TTimer.Create(Nil);
   FTimer.Interval := iOneSecond;
@@ -90,6 +91,7 @@ End;
 Destructor TDGHAutoSaveWizard.Destroy;
 
 Begin
+  TDGHIDEAutoSaveAboutBox.RemoveAboutBox;
   FTimer.Free;
   {$IFDEF DXE00}
   (BorlandIDEServices As INTAEnvironmentOptionsServices).UnregisterAddInOptions(FOpFrame);

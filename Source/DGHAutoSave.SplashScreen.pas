@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    06 Jul 2018
+  @Date    07 Jul 2018
   
 **)
 Unit DGHAutoSave.SplashScreen;
@@ -19,6 +19,8 @@ Uses
 Type
   (** A record to encapsulate the splash screen methods. **)
   TDGHAutoSaveSplashScreen = Record
+  Strict Private
+  Public
     Class Procedure AddSplashScreen; Static;
   End;
 
@@ -40,7 +42,7 @@ Uses
   @postcon The splash screen entry is added to the IDEs splash screen.
 
 **)
-Procedure TDGHAutoSaveSplashScreen.AddSplashScreen;
+Class Procedure TDGHAutoSaveSplashScreen.AddSplashScreen;
 
 Const
   strSplashScreenBitMap = 'SplashScreenBitMap24x24';

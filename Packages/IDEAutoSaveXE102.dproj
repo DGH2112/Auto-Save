@@ -553,6 +553,7 @@
         <DCCReference Include="..\Source\DGHAutoSave.SplashScreen.pas"/>
         <DCCReference Include="..\Source\DGHAutoSave.ResourceStrings.pas"/>
         <DCCReference Include="..\Source\DGHAutoSave.Constants.pas"/>
+        <DCCReference Include="..\Source\DGHAutoSave.AboutBox.pas"/>
         <RcCompile Include="..\Source\SplashScreenIcon.RC">
             <Form>SplashScreenIcon.res</Form>
         </RcCompile>
