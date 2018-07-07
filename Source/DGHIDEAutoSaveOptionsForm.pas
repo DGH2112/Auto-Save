@@ -3,7 +3,7 @@
   This module provide an Option dialogue for the auto save options (@note The interface
   controls are hosted in frame for reuse in the IDEs options pages).
 
-  @Date    01 Jul 2018
+  @Date    07 Jul 2018
   @Version 1.1
   @Author  David Hoyle
 
@@ -45,7 +45,7 @@ Type
 Implementation
 
 Uses
-  DGHIDEAutoSaveSettings;
+  DGHIDEAutoSaveSettings, DGHAutoSave.Types;
 
 {$R *.DFM}
 
@@ -65,6 +65,7 @@ Var
   iInterval : Integer;
   boolEnabled, boolPrompt : Boolean;
   F: TfrmAutoSaveOptions;
+  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
   F := TfrmAutoSaveOptions.Create(Nil);
@@ -72,13 +73,15 @@ Begin
       iInterval := AppOptions.Interval;
       boolEnabled := AppOptions.Enabled;
       boolPrompt := AppOptions.Prompt;
-      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled);
+      eCompileType := AppOptions.CompileType;
+      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
       If F.ShowModal = mrOK Then
         Begin
-          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
+          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
           AppOptions.Interval := iInterval;
           AppOptions.Enabled := boolEnabled;
           AppOptions.Prompt := boolPrompt;
+          AppOptions.CompileType := eCompileType;
         End;
     Finally
       F.Free;

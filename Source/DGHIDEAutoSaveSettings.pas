@@ -5,55 +5,46 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    01 Jul 2018
+  @Date    07 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveSettings;
 
 Interface
 
+Uses
+  DGHAutoSave.Types,
+  DGHAutoSave.Interfaces;
+
 Type
   (** A class to handle the loading and saving of the applications settings. **)
-  TDGHIDEAutoSaveSettings = Class
+  TDGHIDEAutoSaveSettings = Class(TInterfacedObject, IDGHIDEAutoSaveSettings)
   Strict Private
     FEnabled: Boolean;
     FInterval: Integer;
     FPrompt: Boolean;
+    FCompileType : TDGHIDEAutoSaveCompileType;
   Strict Protected
+    Function  GetEnabled: Boolean;
+    Procedure SetEnabled(Const boolValue: Boolean);
+    Function  GetInterval: Integer;
+    Procedure SetInterval(Const iValue: Integer);
+    Function  GetPrompt: Boolean;
+    Procedure SetPrompt(Const boolValue: Boolean);
+    Function  GetCompileType: TDGHIDEAutoSaveCompileType;
+    Procedure SetCompileType(Const eCompileType: TDGHIDEAutoSaveCompileType);
     Procedure LoadSettings;
     Procedure SaveSettings;
   Public
     Constructor Create;
     Destructor Destroy; Override;
-    (**
-      This property determines whether the autosave functionality is enabled or disabled.
-      @precon  None.
-      @postcon Gets or sets whether the autosave functionality is enabled or disabled.
-      @return  a Boolean
-    **)
-    Property Enabled: Boolean Read FEnabled Write FEnabled;
-    (**
-      This property defines the timer interval in second between autosaves.
-      @precon  None.
-      @postcon Gets or sets the interval between autosaves.
-      @return  an Integer
-    **)
-    Property Interval: Integer Read FInterval Write FInterval;
-    (**
-      This property determines whether the user is prompted to save the file or the file
-      is simply saved in the background.
-      @precon  None.
-      @postcon Gets or sets whether the user is prompted to save the modified files.
-      @return  a Boolean
-    **)
-    Property Prompt: Boolean Read FPrompt Write FPrompt;
   End;
 
 Var
   (** This is a globally visable variable to provide the application access to the
-      settings - @note This class is creating in the initialisation section and freed
+      settings - @note This interface is created in the initialisation section and freed
       in the finalisation section. **)
-  AppOptions: TDGHIDEAutoSaveSettings;
+  AppOptions: IDGHIDEAutoSaveSettings;
 
 Implementation
 
@@ -74,6 +65,8 @@ Const
   strPromptKey = 'Prompt';
   (** An INI Key Name for the Enabled. **)
   strEnabledKey = 'Enabled';
+  (** An INI Key Name for the Compile Type. **)
+  strCompileTypeKey = 'CompileType';
 
 (**
 
@@ -109,6 +102,70 @@ End;
 
 (**
 
+  This is a getter method for the CompileType property.
+
+  @precon  None.
+  @postcon Returns the current compile type setting.
+
+  @return  a TDGHIDEAutoSaveCompileType
+
+**)
+Function TDGHIDEAutoSaveSettings.GetCompileType: TDGHIDEAutoSaveCompileType;
+
+Begin
+  Result := FCompileType;
+End;
+
+(**
+
+  This is a getter method for the Enabled property.
+
+  @precon  None.
+  @postcon Returns whether autosaver is enabled.
+
+  @return  a Boolean
+
+**)
+Function TDGHIDEAutoSaveSettings.GetEnabled: Boolean;
+
+Begin
+  Result := FEnabled;
+End;
+
+(**
+
+  This is a getter method for the Interval property.
+
+  @precon  None.
+  @postcon Returns the autosave interval in seconds.
+
+  @return  an Integer
+
+**)
+Function TDGHIDEAutoSaveSettings.GetInterval: Integer;
+
+Begin
+  Result := FInterval;
+End;
+
+(**
+
+  This is a getter method for the Prompt property.
+
+  @precon  None.
+  @postcon Returns whether the user should be prompted before saving files.
+
+  @return  a Boolean
+
+**)
+Function TDGHIDEAutoSaveSettings.GetPrompt: Boolean;
+
+Begin
+  Result := FPrompt;
+End;
+
+(**
+
   This method loads the settings from the regsitry.
 
   @precon  None.
@@ -128,6 +185,8 @@ Begin
       iDefaultInterval);
     FPrompt := riniFile.ReadBool(strRegistryKey + strSetupINISection, strPromptKey, True);
     FEnabled := riniFile.ReadBool(strRegistryKey + strSetupINISection, strEnabledKey, True);
+    FCompileType := TDGHIDEAutoSaveCompileType(riniFile.ReadInteger(strRegistryKey + strSetupINISection,
+      strCompileTypeKey, Byte(asctNone)));
   Finally
     riniFile.Free;
   End;
@@ -152,9 +211,74 @@ Begin
     riniFile.WriteInteger(strRegistryKey + strSetupINISection, strAutoSaveIntKey, FInterval);
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strPromptKey, FPrompt);
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strEnabledKey, FEnabled);
+    riniFile.WriteInteger(strRegistryKey + strSetupINISection, strCompileTypeKey, Byte(FCompileType));
   Finally
     riniFile.Free;
   End;
+End;
+
+(**
+
+  This is a setter method for the CompileType property.
+
+  @precon  None.
+  @postcon Updates the compile type setting.
+
+  @param   eCompileType as a TDGHIDEAutoSaveCompileType as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetCompileType(Const eCompileType: TDGHIDEAutoSaveCompileType);
+
+Begin
+  FCompileType := eCompileType;
+End;
+
+(**
+
+  This is a setter method for the Enabled property.
+
+  @precon  None.
+  @postcon Updates whether autosaev is enabled.
+
+  @param   boolValue as a Boolean as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetEnabled(Const boolValue: Boolean);
+
+Begin
+  FEnabled := boolValue;
+End;
+
+(**
+
+  This is a setter method for the Interval property.
+
+  @precon  None.
+  @postcon Updates the autosaev interval.
+
+  @param   iValue as an Integer as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetInterval(Const iValue: Integer);
+
+Begin
+  FInterval := iValue;
+End;
+
+(**
+
+  This is a setter method for the Prompt property.
+
+  @precon  None.
+  @postcon Updates whether the user should be prompted to save files.
+
+  @param   boolValue as a Boolean as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetPrompt(Const boolValue: Boolean);
+
+Begin
+  FPrompt := boolValue;
 End;
 
 (** Creates an instance of the applications options class. **)
@@ -162,5 +286,5 @@ Initialization
   AppOptions := TDGHIDEAutoSaveSettings.Create;
 (** Frees the memory used by the applications options class. **)
 Finalization
-  AppOptions.Free;
+  AppOptions := Nil;
 End.

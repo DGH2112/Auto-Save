@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    01 Jul 2018
+  @Date    07 Jul 2018
 
 **)
 Unit DGHIDEAutoSaveIDEOptionsInterface;
@@ -43,7 +43,7 @@ Implementation
 {TDGHAutoSaveOptions}
 
 Uses
-  DGHIDEAutoSaveSettings;
+  DGHIDEAutoSaveSettings, DGHAutoSave.Types;
 
 {$IFDEF DXE00}
 (**
@@ -66,14 +66,16 @@ Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 Var
   iInterval: Integer;
   boolPrompt, boolEnabled: Boolean;
+  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
   If Accepted Then
     Begin
-      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
+      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
       AppOptions.Interval := iInterval;
       AppOptions.Prompt := boolPrompt;
       AppOptions.Enabled := boolEnabled;
+      AppOptions.CompileType := eCompileType;
     End;
 End;
 
@@ -98,7 +100,7 @@ Begin
     Begin
       FFrame := AFrame As TfmIDEAutoSaveOptions;
       FFrame.InitialiseFrame(AppOptions.Interval, AppOptions.Prompt,
-        AppOptions.Enabled);
+        AppOptions.Enabled, AppOptions.CompileType);
     End;
 End;
 

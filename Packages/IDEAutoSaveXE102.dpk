@@ -52,6 +52,8 @@ contains
   DGHAutoSave.SplashScreen in '..\Source\DGHAutoSave.SplashScreen.pas',
   DGHAutoSave.ResourceStrings in '..\Source\DGHAutoSave.ResourceStrings.pas',
   DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas',
-  DGHAutoSave.AboutBox in '..\Source\DGHAutoSave.AboutBox.pas';
+  DGHAutoSave.AboutBox in '..\Source\DGHAutoSave.AboutBox.pas',
+  DGHAutoSave.Interfaces in '..\Source\DGHAutoSave.Interfaces.pas',
+  DGHAutoSave.Types in '..\Source\DGHAutoSave.Types.pas';
 
 end.
