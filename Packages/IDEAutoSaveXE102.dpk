@@ -45,7 +45,7 @@ contains
   DGHIDEAutoSave.InitializationModule in '..\Source\DGHIDEAutoSave.InitializationModule.pas',
   DGHIDEAutoSave.OptionsForm in '..\Source\DGHIDEAutoSave.OptionsForm.pas' {frmAutoSaveOptions},
   DGHIDEAutoSave.Wizard in '..\Source\DGHIDEAutoSave.Wizard.pas',
-  DGHIDEAutoSave.Function in '..\Source\DGHIDEAutoSave.Function.pas',
+  DGHIDEAutoSave.Functions in '..\Source\DGHIDEAutoSave.Functions.pas',
   DGHIDEAutoSave.IDEOptionsInterface in '..\Source\DGHIDEAutoSave.IDEOptionsInterface.pas',
   DGHIDEAutoSave.OptionsFrame in '..\Source\DGHIDEAutoSave.OptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
   DGHIDEAutoSave.Settings in '..\Source\DGHIDEAutoSave.Settings.pas',
@@ -54,6 +54,8 @@ contains
   DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas',
   DGHAutoSave.AboutBox in '..\Source\DGHAutoSave.AboutBox.pas',
   DGHAutoSave.Interfaces in '..\Source\DGHAutoSave.Interfaces.pas',
-  DGHAutoSave.Types in '..\Source\DGHAutoSave.Types.pas';
+  DGHAutoSave.Types in '..\Source\DGHAutoSave.Types.pas',
+  DGHIDEAutoSave.CompileNotifier in '..\Source\DGHIDEAutoSave.CompileNotifier.pas',
+  DGHIDEAutoSave.ToolsAPIFunctions in '..\Source\DGHIDEAutoSave.ToolsAPIFunctions.pas';
 
 end.

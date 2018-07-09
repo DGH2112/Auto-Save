@@ -18,7 +18,7 @@ Type
     asctBeforeCompileAll,
     asctBeforeCompileProject,
     asctAfterCompileProject,
-    asctAfterCompipleAll
+    asctAfterCompileAll
   );
   
 Implementation

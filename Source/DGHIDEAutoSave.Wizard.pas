@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.Wizard;
@@ -28,7 +28,6 @@ Type
     {$IFDEF DXE00}
     FOpFrame: TDGHIDEAutoSaveOptionsInterface;
     {$ENDIF}
-    Procedure SaveModifiedFiles;
   Strict Protected
   Public
     Constructor Create;
@@ -48,7 +47,9 @@ Uses
   DGHIDEAutoSave.OptionsForm,
   DGHIDEAutoSave.Settings,
   DGHAutoSave.SplashScreen,
-  DGHAutoSave.AboutBox;
+  DGHAutoSave.AboutBox,
+  DGHIDEAutoSave.CompileNotifier,
+  DGHIDEAutoSave.ToolsAPIFunctions;
 
 (**
 
@@ -67,6 +68,7 @@ Const
 Begin
   TDGHAutoSaveSplashScreen.AddSplashScreen;
   TDGHIDEAutoSaveAboutBox.InstallAboutBox;
+  TDGHIDEAutoSaveCompileNotifier.InstallIDECompilationEventHandler;
   FCounter := 0;
   FTimer := TTimer.Create(Nil);
   FTimer.Interval := iOneSecond;
@@ -90,6 +92,7 @@ End;
 Destructor TDGHAutoSaveWizard.Destroy;
 
 Begin
+  TDGHIDEAutoSaveCompileNotifier.UninstallIDECompilationEventHandler;
   TDGHIDEAutoSaveAboutBox.RemoveAboutBox;
   FTimer.Free;
   {$IFDEF DXE00}
@@ -197,31 +200,6 @@ End;
 
 (**
 
-  This method iterators the editor buffer checking for modified files. If one is modified
-  it save the file. If Prompt is true then you are prompted to save the file else it is
-  automatically saved.
-
-  @precon  None.
-  @postcon Iterates the files open in the IDE and if they are modified saves the files.
-
-**)
-Procedure TDGHAutoSaveWizard.SaveModifiedFiles;
-
-Var
-  Iterator: IOTAEditBufferIterator;
-  i: Integer;
-
-Begin
-  If (BorlandIDEServices As IOTAEditorServices).GetEditBufferIterator(Iterator) Then
-    Begin
-      For i := 0 To Iterator.Count - 1 Do
-        If Iterator.EditBuffers[i].IsModified Then
-          Iterator.EditBuffers[i].Module.Save(False, Not AppOptions.Prompt);
-    End;
-End;
-
-(**
-
   This method is the timer event handler. If saves all the files if the
   appropriate time has elapsed.
 
@@ -242,7 +220,7 @@ Begin
       Begin
         FCounter := 0;
         If AppOptions.Enabled Then
-          SaveModifiedFiles;
+          TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles;
       End;
   Finally
     FTimer.Enabled := True;
