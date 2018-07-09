@@ -4,10 +4,10 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
   
 **)
-Unit DGHAutoSave.AboutBox;
+Unit DGHIDEAutoSave.AboutBox;
 
 Interface
 
@@ -34,8 +34,8 @@ Uses
   WinAPI.Windows,
   VCL.Forms,
   DGHIDEAutoSave.Functions,
-  DGHAutoSave.ResourceStrings,
-  DGHAutoSave.Constants;
+  DGHIDEAutoSave.ResourceStrings,
+  DGHIDEAutoSave.Constants;
 
 (**
 

@@ -7,7 +7,7 @@
   @Date    07 Jul 2018
   
 **)
-Unit DGHAutoSave.Types;
+Unit DGHIDEAutoSave.Types;
 
 Interface
 

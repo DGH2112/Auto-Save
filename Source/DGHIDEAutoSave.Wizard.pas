@@ -46,8 +46,8 @@ Uses
   System.SysUtils,
   DGHIDEAutoSave.OptionsForm,
   DGHIDEAutoSave.Settings,
-  DGHAutoSave.SplashScreen,
-  DGHAutoSave.AboutBox,
+  DGHIDEAutoSave.SplashScreen,
+  DGHIDEAutoSave.AboutBox,
   DGHIDEAutoSave.CompileNotifier,
   DGHIDEAutoSave.ToolsAPIFunctions;
 

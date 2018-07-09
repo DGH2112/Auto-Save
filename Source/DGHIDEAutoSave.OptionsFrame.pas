@@ -5,7 +5,7 @@
 
   @Version 1.1
   @Author  David Hoyle
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.OptionsFrame;
@@ -26,7 +26,7 @@ Uses
   VCL.ComCtrls,
   VCL.Buttons,
   VCL.ExtCtrls,
-  DGHAutoSave.Types;
+  DGHIDEAutoSave.Types;
 
 Type
   (** A frame to represent the settings interface. **)

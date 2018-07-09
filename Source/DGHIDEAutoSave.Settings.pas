@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.Settings;
@@ -13,8 +13,8 @@ Unit DGHIDEAutoSave.Settings;
 Interface
 
 Uses
-  DGHAutoSave.Types,
-  DGHAutoSave.Interfaces;
+  DGHIDEAutoSave.Types,
+  DGHIDEAutoSave.Interfaces;
 
 Type
   (** A class to handle the loading and saving of the applications settings. **)

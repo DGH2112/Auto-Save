@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.IDEOptionsInterface;
@@ -43,7 +43,7 @@ Implementation
 {TDGHAutoSaveOptions}
 
 Uses
-  DGHAutoSave.Types,
+  DGHIDEAutoSave.Types,
   DGHIDEAutoSave.Settings;
 
 {$IFDEF DXE00}

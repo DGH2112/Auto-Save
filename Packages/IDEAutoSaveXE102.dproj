@@ -550,12 +550,12 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\DGHIDEAutoSave.Settings.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.SplashScreen.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.ResourceStrings.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.Constants.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.AboutBox.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.Interfaces.pas"/>
-        <DCCReference Include="..\Source\DGHAutoSave.Types.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.SplashScreen.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.ResourceStrings.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Constants.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.AboutBox.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Interfaces.pas"/>
+        <DCCReference Include="..\Source\DGHIDEAutoSave.Types.pas"/>
         <DCCReference Include="..\Source\DGHIDEAutoSave.CompileNotifier.pas"/>
         <DCCReference Include="..\Source\DGHIDEAutoSave.ToolsAPIFunctions.pas"/>
         <RcCompile Include="..\Source\SplashScreenIcon.RC">

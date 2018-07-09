@@ -4,15 +4,15 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
   
 **)
-Unit DGHAutoSave.Interfaces;
+Unit DGHIDEAutoSave.Interfaces;
 
 Interface
 
 Uses
-  DGHAutoSave.Types;
+  DGHIDEAutoSave.Types;
 
 Type
   (** An interface to describe the applications settings. **)

@@ -3,7 +3,7 @@
   This module provide an Option dialogue for the auto save options (@note The interface
   controls are hosted in frame for reuse in the IDEs options pages).
 
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
   @Version 1.1
   @Author  David Hoyle
 
@@ -45,7 +45,7 @@ Type
 Implementation
 
 Uses
-  DGHAutoSave.Types,
+  DGHIDEAutoSave.Types,
   DGHIDEAutoSave.Settings;
 
 {$R *.DFM}

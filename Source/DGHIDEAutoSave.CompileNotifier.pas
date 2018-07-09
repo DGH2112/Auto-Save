@@ -36,7 +36,7 @@ Implementation
 Uses
   System.SysUtils,
   DGHIDEAutoSave.Settings, //: @todo Tnis can be removed of class created with IDGHIDEAutoSaveSettings.
-  DGHAutoSave.Types,
+  DGHIDEAutoSave.Types,
   DGHIDEAutoSave.ToolsAPIFunctions;
 
 (**

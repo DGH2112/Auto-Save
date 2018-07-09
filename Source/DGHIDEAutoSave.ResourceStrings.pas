@@ -7,7 +7,7 @@
   @Date    06 Jul 2018
   
 **)
-Unit DGHAutoSave.ResourceStrings;
+Unit DGHIDEAutoSave.ResourceStrings;
 
 Interface
 

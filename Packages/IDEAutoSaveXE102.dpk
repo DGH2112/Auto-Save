@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 2.1
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
 
 **)
 package IDEAutoSaveXE102;
@@ -49,12 +49,12 @@ contains
   DGHIDEAutoSave.IDEOptionsInterface in '..\Source\DGHIDEAutoSave.IDEOptionsInterface.pas',
   DGHIDEAutoSave.OptionsFrame in '..\Source\DGHIDEAutoSave.OptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
   DGHIDEAutoSave.Settings in '..\Source\DGHIDEAutoSave.Settings.pas',
-  DGHAutoSave.SplashScreen in '..\Source\DGHAutoSave.SplashScreen.pas',
-  DGHAutoSave.ResourceStrings in '..\Source\DGHAutoSave.ResourceStrings.pas',
-  DGHAutoSave.Constants in '..\Source\DGHAutoSave.Constants.pas',
-  DGHAutoSave.AboutBox in '..\Source\DGHAutoSave.AboutBox.pas',
-  DGHAutoSave.Interfaces in '..\Source\DGHAutoSave.Interfaces.pas',
-  DGHAutoSave.Types in '..\Source\DGHAutoSave.Types.pas',
+  DGHIDEAutoSave.SplashScreen in '..\Source\DGHIDEAutoSave.SplashScreen.pas',
+  DGHIDEAutoSave.ResourceStrings in '..\Source\DGHIDEAutoSave.ResourceStrings.pas',
+  DGHIDEAutoSave.Constants in '..\Source\DGHIDEAutoSave.Constants.pas',
+  DGHIDEAutoSave.AboutBox in '..\Source\DGHIDEAutoSave.AboutBox.pas',
+  DGHIDEAutoSave.Interfaces in '..\Source\DGHIDEAutoSave.Interfaces.pas',
+  DGHIDEAutoSave.Types in '..\Source\DGHIDEAutoSave.Types.pas',
   DGHIDEAutoSave.CompileNotifier in '..\Source\DGHIDEAutoSave.CompileNotifier.pas',
   DGHIDEAutoSave.ToolsAPIFunctions in '..\Source\DGHIDEAutoSave.ToolsAPIFunctions.pas';
 
