@@ -84,20 +84,9 @@ End;
 **)
 Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 
-Var
-  iInterval: Integer;
-  boolPrompt, boolEnabled: Boolean;
-  eCompileType: TDGHIDEAutoSaveCompileType;
-
 Begin
   If Accepted Then
-    Begin
-      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
-      FSettings.Interval := iInterval;
-      FSettings.Prompt := boolPrompt;
-      FSettings.Enabled := boolEnabled;
-      FSettings.CompileType := eCompileType;
-    End;
+    FFrame.FinaliseFrame(FSettings);
 End;
 
 (**
@@ -120,11 +109,7 @@ Begin
   If AFrame Is TfmIDEAutoSaveOptions Then
     Begin
       FFrame := AFrame As TfmIDEAutoSaveOptions;
-      FFrame.InitialiseFrame(
-        FSettings.Interval,
-        FSettings.Prompt,
-        FSettings.Enabled,
-        FSettings.CompileType);
+      FFrame.InitialiseFrame(FSettings);
     End;
 End;
 

@@ -21,7 +21,6 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
     Anchors = [akLeft, akTop, akRight]
     Caption = 'AutoSave Options'
     TabOrder = 0
-    ExplicitWidth = 282
     DesignSize = (
       375
       77)
@@ -46,14 +45,13 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
       Left = 351
       Top = 22
       Width = 16
-      Height = 21
+      Height = 24
       Anchors = [akTop, akRight]
       Associate = edtAutosaveInterval
       Min = 60
       Max = 3600
       Position = 60
       TabOrder = 1
-      ExplicitLeft = 258
     end
     object cbxPrompt: TCheckBox
       Left = 16
@@ -63,7 +61,6 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
       Anchors = [akLeft, akTop, akRight]
       Caption = '&Prompt'
       TabOrder = 2
-      ExplicitWidth = 255
     end
   end
   object chkEnabled: TCheckBox
@@ -75,7 +72,6 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
     Caption = '&Enabled AutoSave'
     TabOrder = 1
     OnClick = chkEnabledClick
-    ExplicitWidth = 267
   end
   object rgrpCompileType: TRadioGroup
     Left = 3
@@ -91,6 +87,5 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
       'AutoSave files After compile e&ach Project'
       'AutoSave files &After compiling ALL Projects')
     TabOrder = 2
-    ExplicitHeight = 189
   end
 end

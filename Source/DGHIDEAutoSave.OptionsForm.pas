@@ -63,27 +63,14 @@ Uses
 Class Procedure TfrmAutoSaveOptions.Execute(Const Settings : IDGHIDEAutoSaveSettings);
 
 Var
-  iInterval : Integer;
-  boolEnabled, boolPrompt : Boolean;
   F: TfrmAutoSaveOptions;
-  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
   F := TfrmAutoSaveOptions.Create(Nil);
     Try
-      iInterval := Settings.Interval;
-      boolEnabled := Settings.Enabled;
-      boolPrompt := Settings.Prompt;
-      eCompileType := Settings.CompileType;
-      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
+      F.FIDEAutoSaveFrame.InitialiseFrame(Settings);
       If F.ShowModal = mrOK Then
-        Begin
-          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
-          Settings.Interval := iInterval;
-          Settings.Enabled := boolEnabled;
-          Settings.Prompt := boolPrompt;
-          Settings.CompileType := eCompileType;
-        End;
+        F.FIDEAutoSaveFrame.FinaliseFrame(Settings);
     Finally
       F.Free;
     End;
