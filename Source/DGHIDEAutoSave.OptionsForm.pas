@@ -3,29 +3,29 @@
   This module provide an Option dialogue for the auto save options (@note The interface
   controls are hosted in frame for reuse in the IDEs options pages).
 
-  @Date    09 Apr 2016
-  @Version 1.0
+  @Date    09 Jul 2018
+  @Version 1.1
   @Author  David Hoyle
 
 **)
-Unit DGHIDEAutoSaveOptionsForm;
+Unit DGHIDEAutoSave.OptionsForm;
 
 Interface
 
 Uses
-  Windows,
-  Messages,
-  SysUtils,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  Dialogs,
-  StdCtrls,
-  Buttons,
-  ComCtrls,
-  DGHIDEAutoSaveOptionsFrame,
-  ExtCtrls;
+  WinAPI.Windows,
+  WinAPI.Messages,
+  System.SysUtils,
+  System.Classes,
+  VCL.Graphics,
+  VCL.Controls,
+  VCL.Forms,
+  VCL.Dialogs,
+  VCL.StdCtrls,
+  VCL.Buttons,
+  VCL.ComCtrls,
+  DGHIDEAutoSave.OptionsFrame,
+  VCL.ExtCtrls;
 
 Type
   (** This class represent an options dialogue for the autosave feature. **)
@@ -45,11 +45,10 @@ Type
 Implementation
 
 Uses
-  DGHIDEAutoSaveSettings;
+  DGHIDEAutoSave.Types,
+  DGHIDEAutoSave.Settings;
 
 {$R *.DFM}
-
-{TfrmAutoSaveOptions}
 
 (**
 
@@ -64,23 +63,27 @@ Class Procedure TfrmAutoSaveOptions.Execute;
 Var
   iInterval : Integer;
   boolEnabled, boolPrompt : Boolean;
+  F: TfrmAutoSaveOptions;
+  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
-  With TfrmAutoSaveOptions.Create(Nil) Do
+  F := TfrmAutoSaveOptions.Create(Nil);
     Try
       iInterval := AppOptions.Interval;
       boolEnabled := AppOptions.Enabled;
       boolPrompt := AppOptions.Prompt;
-      FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled);
-      If ShowModal = mrOK Then
+      eCompileType := AppOptions.CompileType;
+      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
+      If F.ShowModal = mrOK Then
         Begin
-          FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
+          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
           AppOptions.Interval := iInterval;
           AppOptions.Enabled := boolEnabled;
           AppOptions.Prompt := boolPrompt;
+          AppOptions.CompileType := eCompileType;
         End;
     Finally
-      Free;
+      F.Free;
     End;
 End;
 

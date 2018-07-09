@@ -4,18 +4,18 @@
   IDEs main option dialogue.
 
   @Author  David Hoyle
-  @Version 1.0
-  @Date    18 Dec 2016
+  @Version 1.1
+  @Date    09 Jul 2018
 
 **)
-Unit DGHIDEAutoSaveIDEOptionsInterface;
+Unit DGHIDEAutoSave.IDEOptionsInterface;
 
 Interface
 
 Uses
   ToolsAPI,
-  Forms,
-  DGHIDEAutoSaveOptionsFrame;
+  VCL.Forms,
+  DGHIDEAutoSave.OptionsFrame;
 
 {$INCLUDE CompilerDefinitions.inc}
 
@@ -43,7 +43,8 @@ Implementation
 {TDGHAutoSaveOptions}
 
 Uses
-  DGHIDEAutoSaveSettings;
+  DGHIDEAutoSave.Types,
+  DGHIDEAutoSave.Settings;
 
 {$IFDEF DXE00}
 (**
@@ -56,6 +57,8 @@ Uses
   @postcon If the dialogue is accepted then the options frame settings are retreived and
            saved back to the applications options class.
 
+  @nocheck MissingCONSTInParam
+
   @param   Accepted as a Boolean
 
 **)
@@ -64,14 +67,16 @@ Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 Var
   iInterval: Integer;
   boolPrompt, boolEnabled: Boolean;
+  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
   If Accepted Then
     Begin
-      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled);
+      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
       AppOptions.Interval := iInterval;
       AppOptions.Prompt := boolPrompt;
       AppOptions.Enabled := boolEnabled;
+      AppOptions.CompileType := eCompileType;
     End;
 End;
 
@@ -84,6 +89,8 @@ End;
   @postcon Checks the frame is the corrct frames and is so initialises the frame through
            its InitialiseFrame method.
 
+  @nocheck MissingCONSTInParam
+
   @param   AFrame as a TCustomFrame
 
 **)
@@ -94,7 +101,7 @@ Begin
     Begin
       FFrame := AFrame As TfmIDEAutoSaveOptions;
       FFrame.InitialiseFrame(AppOptions.Interval, AppOptions.Prompt,
-        AppOptions.Enabled);
+        AppOptions.Enabled, AppOptions.CompileType);
     End;
 End;
 
@@ -129,8 +136,11 @@ End;
 **)
 Function TDGHIDEAutoSaveOptionsInterface.GetCaption: String;
 
+ResourceString
+  strIDEAutoSaveOptions = 'IDE Auto Save.Options';
+
 Begin
-  Result := 'IDE Auto Save.Options';
+  Result := strIDEAutoSaveOptions;
 End;
 
 (**

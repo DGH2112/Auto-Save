@@ -3,8 +3,8 @@
   Package for the Auto Save IDE addin.
 
   @Author  David Hoyle
-  @Version 2.0
-  @Date    18 Dec 2016
+  @Version 2.1
+  @Date    09 Jul 2018
 
 **)
 package IDEAutoSaveXE102;
@@ -33,7 +33,7 @@ package IDEAutoSaveXE102;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Delphi IDE AutoSave 2.0'}
+{$DESCRIPTION 'Delphi IDE AutoSave 2.1'}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -42,12 +42,20 @@ requires
   DesignIDE;
 
 contains
-  DGHIDEAutoSaveModule in '..\Source\DGHIDEAutoSaveModule.pas',
-  DGHIDEAutoSaveOptionsForm in '..\Source\DGHIDEAutoSaveOptionsForm.pas' {frmAutoSaveOptions},
-  DGHIDEAutoSaveMainWizardInterface in '..\Source\DGHIDEAutoSaveMainWizardInterface.pas',
-  DGHIDEAutoSaveUtilities in '..\Source\DGHIDEAutoSaveUtilities.pas',
-  DGHIDEAutoSaveIDEOptionsInterface in '..\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',
-  DGHIDEAutoSaveOptionsFrame in '..\Source\DGHIDEAutoSaveOptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
-  DGHIDEAutoSaveSettings in '..\Source\DGHIDEAutoSaveSettings.pas';
+  DGHIDEAutoSave.InitializationModule in '..\Source\DGHIDEAutoSave.InitializationModule.pas',
+  DGHIDEAutoSave.OptionsForm in '..\Source\DGHIDEAutoSave.OptionsForm.pas' {frmAutoSaveOptions},
+  DGHIDEAutoSave.Wizard in '..\Source\DGHIDEAutoSave.Wizard.pas',
+  DGHIDEAutoSave.Functions in '..\Source\DGHIDEAutoSave.Functions.pas',
+  DGHIDEAutoSave.IDEOptionsInterface in '..\Source\DGHIDEAutoSave.IDEOptionsInterface.pas',
+  DGHIDEAutoSave.OptionsFrame in '..\Source\DGHIDEAutoSave.OptionsFrame.pas' {fmIDEAutoSaveOptions: TFrame},
+  DGHIDEAutoSave.Settings in '..\Source\DGHIDEAutoSave.Settings.pas',
+  DGHIDEAutoSave.SplashScreen in '..\Source\DGHIDEAutoSave.SplashScreen.pas',
+  DGHIDEAutoSave.ResourceStrings in '..\Source\DGHIDEAutoSave.ResourceStrings.pas',
+  DGHIDEAutoSave.Constants in '..\Source\DGHIDEAutoSave.Constants.pas',
+  DGHIDEAutoSave.AboutBox in '..\Source\DGHIDEAutoSave.AboutBox.pas',
+  DGHIDEAutoSave.Interfaces in '..\Source\DGHIDEAutoSave.Interfaces.pas',
+  DGHIDEAutoSave.Types in '..\Source\DGHIDEAutoSave.Types.pas',
+  DGHIDEAutoSave.CompileNotifier in '..\Source\DGHIDEAutoSave.CompileNotifier.pas',
+  DGHIDEAutoSave.ToolsAPIFunctions in '..\Source\DGHIDEAutoSave.ToolsAPIFunctions.pas';
 
 end.
