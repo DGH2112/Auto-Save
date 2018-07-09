@@ -1,47 +1,58 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveOptionsForm.pas',0,1,51,12,76,0,0,,
-File_1=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveMainWizardInterface.pas',0,1,201,1,220,0,0,,
-File_2=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',0,1,123,34,140,0,0,,
-File_3=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveOptionsFrame.pas',0,1,93,3,95,0,0,,
-File_4=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveSettings.pas',0,1,71,38,75,0,0,,
-File_5=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveUtilities.pas',0,1,27,31,69,0,0,,
-File_6=TSourceModule,'D:\HoylD\RAD Studio\IDE Addins\AutoSave\Source\CompilerDefinitions.inc',0,1,376,18,414,0,0,,
-File_7=TSourceModule,'D:\HoylD\RAD Studio\IDE Addins\BrowseAndDocIt\Source\BADI.ModuleExplorerFrame.pas',0,1,1,17,11,0,0,,
-File_8=TSourceModule,'D:\HoylD\RAD Studio\IDE Addins\BrowseAndDocIt\Source\BADI.Functions.pas',0,1,114,13,146,0,0,,
-File_9=TSourceModule,'D:\HoylD\RAD Studio\IDE Addins\BrowseAndDocIt\Source\CompilerDefinitions.inc',0,1,384,14,414,0,0,,
-File_10=TSourceModule,'D:\HoylD\Web Page\Blog\Example Code\Unit1.pas',0,1,1,30,9,0,0,,
-File_11=TSourceModule,'D:\HoylD\RAD Studio\IDE Addins\BrowseAndDocIt\Source\DUnitForm.pas',0,1,619,25,631,0,0,,
-File_12=TSourceModule,'D:\HoylD\RAD Studio\Library\CodeSiteFileLogging.pas',0,1,1,22,9,0,0,,
-File_13=TSourceModule,'D:\HoylD\RAD Studio\Applications\XER Tools\Test\TestCleaningFunctions.pas',0,1,1710,3,1714,0,0,,
-File_14=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Variants.pas',0,1,2313,27,2322,0,0,,
-File_15=TSourceModule,'d:\hoyld\borland studio projects\applications\xer tools\source\XERDataViewerForm.pas',0,1,1,32,24,0,0,,
-File_16=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\Source\DUnit\Src\TestFramework.pas',0,1,3070,42,3081,0,0,,
-File_17=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5444,1,5474,0,0,,
-File_18=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\rtl\common\System.Classes.pas',0,1,6747,1,6777,0,0,,
-File_19=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\SOURCE\RTL\SYS\System.pas',0,1,29733,1,29790,0,0,,
+File_0=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.ToolsAPIFunctions.pas',0,1,1,71,14,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\19.0\source\ToolsAPI\ToolsAPI.pas',0,1,2462,3,2487,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\19.0\source\rtl\common\System.Classes.pas',0,1,5191,1,5226,0,0,,
+File_3=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\LibrarySuffixes.inc',0,1,1,33,1,0,0,,
+File_4=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveSettings.pas',0,1,268,53,274,0,0,,
+File_5=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveOptionsFrame.pas',0,1,1,10,1,0,0,,
+File_6=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveIDEOptionsInterface.pas',0,1,1,59,8,0,0,,
+File_7=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveOptionsForm.pas',0,1,1,15,7,0,0,,
+File_8=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveMainWizardInterface.pas',0,1,1,1,1,0,0,,
+File_9=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas',0,1,33,69,53,0,0,,
+File_10=TSourceModule,'D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveUtilities.pas',0,1,1,1,1,0,0,,
 
 [Modules]
-Module0=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas
-Module1=documentation.htm
-Module2=default.htm
-Count=3
+Module0=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.CompileNotifier.pas
+Module1=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.Wizard.pas
+Module2=D:\Documents\RAD Studio\IDE Addins\AutoSave\Packages\IDEAutoSaveXE102.dproj
+Module3=D:\Documents\RAD Studio\IDE Addins\AutoSave\DGHIDEAutoSave.dproj
+Module4=D:\Documents\RAD Studio\IDE Addins\AutoSave\License.md
+Module5=D:\Documents\RAD Studio\IDE Addins\AutoSave\README.md
+Module6=default.htm
+Count=7
 EditWindowCount=1
 
-[D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas]
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.CompileNotifier.pas]
 ModuleType=TSourceModule
 
-[documentation.htm]
-ModuleType=TURLModule
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.Wizard.pas]
+ModuleType=TSourceModule
+
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\Packages\IDEAutoSaveXE102.dproj]
+ModuleType=TBaseProject
+
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\DGHIDEAutoSave.dproj]
+ModuleType=TBaseProject
+
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\License.md]
+ModuleType=TSourceModule
+
+[D:\Documents\RAD Studio\IDE Addins\AutoSave\README.md]
+ModuleType=TSourceModule
 
 [default.htm]
 ModuleType=TURLModule
 
 [EditWindow0]
-ViewCount=3
-CurrentEditView=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas
+ViewCount=7
+CurrentEditView=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.CompileNotifier.pas
 View0=0
 View1=1
 View2=2
+View3=3
+View4=4
+View5=5
+View6=6
 PercentageSizes=1
 Create=1
 Visible=1
@@ -74,19 +85,70 @@ CustomEditViewType=TWelcomePageView
 WelcomePageURL=bds:/default.htm
 
 [View1]
-CustomEditViewType=TWelcomePageView
-WelcomePageURL=bds:/documentation.htm
-
-[View2]
 CustomEditViewType=TEditView
-Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas
-CursorX=37
-CursorY=30
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\README.md
+CursorX=1
+CursorY=1
 TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSaveModule.pas
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\README.md
+
+[View2]
+CustomEditViewType=TEditView
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\License.md
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\License.md
+
+[View3]
+CustomEditViewType=TEditView
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\DGHIDEAutoSave.dpr
+CursorX=42
+CursorY=15
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\DGHIDEAutoSave.dpr
+
+[View4]
+CustomEditViewType=TEditView
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\Packages\IDEAutoSaveXE102.dpk
+CursorX=50
+CursorY=33
+TopLine=12
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\Packages\IDEAutoSaveXE102.dpk
+
+[View5]
+CustomEditViewType=TEditView
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.Wizard.pas
+CursorX=3
+CursorY=52
+TopLine=37
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.Wizard.pas
+
+[View6]
+CustomEditViewType=TEditView
+Module=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.CompileNotifier.pas
+CursorX=46
+CursorY=62
+TopLine=41
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Documents\RAD Studio\IDE Addins\AutoSave\Source\DGHIDEAutoSave.CompileNotifier.pas
 
 [UndockedDesigner]
 Count=0
@@ -867,7 +929,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,PropertyInspector,ToolForm,TemplateView,ModelViewTool,frmDesignPreview,DataExplorerContainer
+TabDockClients=ProjectManager,PropertyInspector,ToolForm,TemplateView,DataExplorerContainer,frmDesignPreview,ModelViewTool
 
 [DockSite3]
 HostDockSite=DockLeftPanel
@@ -916,4 +978,7 @@ StayOnTop=0
 TabPosition=1
 ActiveTabID=MessageView
 TabDockClients=MessageView,FindReferencsForm,RefactoringForm,DebugLogView
+
+[ActiveProject]
+ActiveProject=2
 

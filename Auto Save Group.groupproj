@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{69A23C8A-F88E-4AC1-86A7-B294A9009D32}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DGHIDEAutoSave.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DGHIDEAutoSave">
+        <MSBuild Projects="DGHIDEAutoSave.dproj"/>
+    </Target>
+    <Target Name="DGHIDEAutoSave:Clean">
+        <MSBuild Projects="DGHIDEAutoSave.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DGHIDEAutoSave:Make">
+        <MSBuild Projects="DGHIDEAutoSave.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DGHIDEAutoSave"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DGHIDEAutoSave:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DGHIDEAutoSave:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
