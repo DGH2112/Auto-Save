@@ -24,8 +24,9 @@ Uses
   VCL.StdCtrls,
   VCL.Buttons,
   VCL.ComCtrls,
-  DGHIDEAutoSave.OptionsFrame,
-  VCL.ExtCtrls;
+  VCL.ExtCtrls,
+  DGHIDEAutoSave.Interfaces,
+  DGHIDEAutoSave.OptionsFrame;
 
 Type
   (** This class represent an options dialogue for the autosave feature. **)
@@ -39,14 +40,13 @@ Type
     FIDEAutoSaveFrame: TfmIDEAutoSaveOptions;
   Public
     {Public declarations}
-    Class Procedure Execute;
+    Class Procedure Execute(Const Settings : IDGHIDEAutoSaveSettings);
   End;
 
 Implementation
 
 Uses
-  DGHIDEAutoSave.Types,
-  DGHIDEAutoSave.Settings;
+  DGHIDEAutoSave.Types;
 
 {$R *.DFM}
 
@@ -57,8 +57,10 @@ Uses
   @precon  None.
   @postcon Displays the AuotSave optins dialogue for settings the auto save attributes.
 
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+
 **)
-Class Procedure TfrmAutoSaveOptions.Execute;
+Class Procedure TfrmAutoSaveOptions.Execute(Const Settings : IDGHIDEAutoSaveSettings);
 
 Var
   iInterval : Integer;
@@ -69,18 +71,18 @@ Var
 Begin
   F := TfrmAutoSaveOptions.Create(Nil);
     Try
-      iInterval := AppOptions.Interval;
-      boolEnabled := AppOptions.Enabled;
-      boolPrompt := AppOptions.Prompt;
-      eCompileType := AppOptions.CompileType;
+      iInterval := Settings.Interval;
+      boolEnabled := Settings.Enabled;
+      boolPrompt := Settings.Prompt;
+      eCompileType := Settings.CompileType;
       F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
       If F.ShowModal = mrOK Then
         Begin
           F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
-          AppOptions.Interval := iInterval;
-          AppOptions.Enabled := boolEnabled;
-          AppOptions.Prompt := boolPrompt;
-          AppOptions.CompileType := eCompileType;
+          Settings.Interval := iInterval;
+          Settings.Enabled := boolEnabled;
+          Settings.Prompt := boolPrompt;
+          Settings.CompileType := eCompileType;
         End;
     Finally
       F.Free;

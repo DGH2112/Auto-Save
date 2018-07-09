@@ -12,23 +12,25 @@ Unit DGHIDEAutoSave.ToolsAPIFunctions;
 Interface
 
 Uses
-  ToolsAPI;
+  ToolsAPI,
+  DGHIDEAutoSave.Interfaces;
 
 Type
   (** This is a record to encapsulate all the file saving code. **)
   TDGHIDEAutoSaveToolsAPIFunctions = Record
   Strict Private
-    Class Procedure OutputMessage(Const strFileName : String); Static;
+    Class Procedure OutputMessage(Const Settings : IDGHIDEAutoSaveSettings;
+      Const strFileName : String); Static;
   Public
-    Class Procedure SaveAllModifiedFiles; Static;
-    Class Procedure SaveProjectModifiedFiles(Const Project : IOTAProject); Static;
+    Class Procedure SaveAllModifiedFiles(Const Settings : IDGHIDEAutoSaveSettings); Static;
+    Class Procedure SaveProjectModifiedFiles(Const Settings : IDGHIDEAutoSaveSettings;
+      Const Project : IOTAProject); Static;
   End;
 
 Implementation
 
 Uses
-  System.SysUtils,
-  DGHIDEAutoSave.Settings;
+  System.SysUtils;
 
 (**
 
@@ -37,10 +39,12 @@ Uses
   @precon  None.
   @postcon Outputs a message to the message view for the filename saved.
 
+  @param   Settings    as an IDGHIDEAutoSaveSettings as a constant
   @param   strFileName as a String as a constant
 
 **)
-Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.OutputMessage(Const strFileName: String);
+Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.OutputMessage(Const Settings : IDGHIDEAutoSaveSettings;
+  Const strFileName : String);
 
 ResourceString
   strDGHIDEAutoSave = 'DGHIDEAutoSave';
@@ -62,15 +66,17 @@ End;
 
 (**
 
-  This method iterators the editor buffer checking for modified files. If one is modified
-  it save the file. If Prompt is true then you are prompted to save the file else it is
-  automatically saved.
+  This method iterators the editor buffer checking for modified files. If one is modified it save the 
+  file. If Prompt is true then you are prompted to save the file else it is automatically saved.
 
   @precon  None.
   @postcon Iterates the files open in the IDE and if they are modified saves the files.
 
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+
 **)
-Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles;
+Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(
+  Const Settings : IDGHIDEAutoSaveSettings);
 
 Var
   ES : IOTAEditorServices;
@@ -88,8 +94,8 @@ Begin
               E := Iterator.EditBuffers[i];
               If E.IsModified Then
                 Begin
-                  E.Module.Save(False, Not AppOptions.Prompt);
-                  OutputMessage(E.FileName);
+                  E.Module.Save(False, Not Settings.Prompt);
+                  OutputMessage(Settings, E.FileName);
                 End;
             End;
         End;
@@ -103,10 +109,12 @@ End;
   @precon  None.
   @postcon An files int he project which have been modified are saved.
 
-  @param   Project as an IOTAProject as a constant
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+  @param   Project  as an IOTAProject as a constant
 
 **)
-Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(Const Project: IOTAProject);
+Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(
+  Const Settings : IDGHIDEAutoSaveSettings; Const Project : IOTAProject);
 
 Var
   iModule: Integer;
@@ -125,8 +133,8 @@ Begin
               M := MS.FindModule(MI.FileName);
               If Assigned(M) Then
                 Begin 
-                  M.Save(False, Not AppOptions.Prompt);
-                  OutputMessage(MI.FileName);
+                  M.Save(False, Not Settings.Prompt);
+                  OutputMessage(Settings, MI.FileName);
                 End;
             End;
         End;
