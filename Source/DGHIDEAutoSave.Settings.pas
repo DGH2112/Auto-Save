@@ -40,12 +40,6 @@ Type
     Destructor Destroy; Override;
   End;
 
-Var
-  (** This is a globally visable variable to provide the application access to the
-      settings - @note This interface is created in the initialisation section and freed
-      in the finalisation section. **)
-  AppOptions: IDGHIDEAutoSaveSettings;
-
 Implementation
 
 Uses
@@ -281,10 +275,4 @@ Begin
   FPrompt := boolValue;
 End;
 
-(** Creates an instance of the applications options class. **)
-Initialization
-  AppOptions := TDGHIDEAutoSaveSettings.Create;
-(** Frees the memory used by the applications options class. **)
-Finalization
-  AppOptions := Nil;
 End.

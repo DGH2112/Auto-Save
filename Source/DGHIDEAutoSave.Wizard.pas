@@ -15,6 +15,7 @@ Uses
   ToolsAPI,
   VCL.Extctrls,
   VCL.Menus,
+  DGHIDEAutoSave.Interfaces,
   DGHIDEAutoSave.IDEOptionsInterface;
 
 {$INCLUDE CompilerDefinitions.inc}
@@ -28,6 +29,7 @@ Type
     {$IFDEF DXE00}
     FOpFrame: TDGHIDEAutoSaveOptionsInterface;
     {$ENDIF}
+    FSettings : IDGHIDEAutoSaveSettings;
   Strict Protected
   Public
     Constructor Create;
@@ -66,16 +68,17 @@ Const
   iOneSecond = 1000;
 
 Begin
+  FSettings := TDGHIDEAutoSaveSettings.Create;
   TDGHAutoSaveSplashScreen.AddSplashScreen;
   TDGHIDEAutoSaveAboutBox.InstallAboutBox;
-  TDGHIDEAutoSaveCompileNotifier.InstallIDECompilationEventHandler;
+  TDGHIDEAutoSaveCompileNotifier.InstallIDECompilationEventHandler(FSettings);
   FCounter := 0;
   FTimer := TTimer.Create(Nil);
   FTimer.Interval := iOneSecond;
   FTimer.OnTimer := TimerEvent;
   FTimer.Enabled := True;
   {$IFDEF DXE00}
-  FOpFrame := TDGHIDEAutoSaveOptionsInterface.Create;
+  FOpFrame := TDGHIDEAutoSaveOptionsInterface.Create(FSettings);
   (BorlandIDEServices As INTAEnvironmentOptionsServices).RegisterAddInOptions(FOpFrame);
   {$ENDIF}
 End;
@@ -92,13 +95,14 @@ End;
 Destructor TDGHAutoSaveWizard.Destroy;
 
 Begin
-  TDGHIDEAutoSaveCompileNotifier.UninstallIDECompilationEventHandler;
-  TDGHIDEAutoSaveAboutBox.RemoveAboutBox;
   FTimer.Free;
   {$IFDEF DXE00}
   (BorlandIDEServices As INTAEnvironmentOptionsServices).UnregisterAddInOptions(FOpFrame);
   FOpFrame := Nil;
   {$ENDIF}
+  TDGHIDEAutoSaveCompileNotifier.UninstallIDECompilationEventHandler;
+  TDGHIDEAutoSaveAboutBox.RemoveAboutBox;
+  FSettings := Nil;
   Inherited Destroy;
 End;
 
@@ -216,11 +220,11 @@ Begin
   FTimer.Enabled := False;
   Try
     Inc(FCounter);
-    If FCounter >= AppOptions.Interval Then
+    If FCounter >= FSettings.Interval Then
       Begin
         FCounter := 0;
-        If AppOptions.Enabled Then
-          TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles;
+        If FSettings.Enabled Then
+          TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings);
       End;
   Finally
     FTimer.Enabled := True;

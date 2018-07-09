@@ -15,6 +15,7 @@ Interface
 Uses
   ToolsAPI,
   VCL.Forms,
+  DGHIDEAutoSave.Interfaces,
   DGHIDEAutoSave.OptionsFrame;
 
 {$INCLUDE CompilerDefinitions.inc}
@@ -25,8 +26,8 @@ Type
   TDGHIDEAutoSaveOptionsInterface = Class(TInterfacedObject, INTAAddInOptions)
   Strict Private
     FFrame: TfmIDEAutoSaveOptions;
+    FSettings : IDGHIDEAutoSaveSettings;
   Strict Protected
-  Public
     Procedure DialogClosed(Accepted: Boolean);
     Procedure FrameCreated(AFrame: TCustomFrame);
     Function GetArea: String;
@@ -35,6 +36,8 @@ Type
     Function GetHelpContext: Integer;
     Function IncludeInIDEInsight: Boolean;
     Function ValidateContents: Boolean;
+  Public
+    Constructor Create(Const Settings : IDGHIDEAutoSaveSettings);
   End;
 {$ENDIF}
 
@@ -47,6 +50,23 @@ Uses
   DGHIDEAutoSave.Settings;
 
 {$IFDEF DXE00}
+
+(**
+
+  A constructor for the TDGHIDEAutoSaveOptionsInterface class.
+
+  @precon  None.
+  @postcon Saves a reference to the settings interface.
+
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+
+**)
+Constructor TDGHIDEAutoSaveOptionsInterface.Create(Const Settings : IDGHIDEAutoSaveSettings);
+
+Begin
+  FSettings := Settings;
+End;
+
 (**
 
   This method is call when the IDEs Options dialogue is closed. Accepted = True if the
@@ -64,20 +84,9 @@ Uses
 **)
 Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 
-Var
-  iInterval: Integer;
-  boolPrompt, boolEnabled: Boolean;
-  eCompileType: TDGHIDEAutoSaveCompileType;
-
 Begin
   If Accepted Then
-    Begin
-      FFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
-      AppOptions.Interval := iInterval;
-      AppOptions.Prompt := boolPrompt;
-      AppOptions.Enabled := boolEnabled;
-      AppOptions.CompileType := eCompileType;
-    End;
+    FFrame.FinaliseFrame(FSettings);
 End;
 
 (**
@@ -100,8 +109,7 @@ Begin
   If AFrame Is TfmIDEAutoSaveOptions Then
     Begin
       FFrame := AFrame As TfmIDEAutoSaveOptions;
-      FFrame.InitialiseFrame(AppOptions.Interval, AppOptions.Prompt,
-        AppOptions.Enabled, AppOptions.CompileType);
+      FFrame.InitialiseFrame(FSettings);
     End;
 End;
 

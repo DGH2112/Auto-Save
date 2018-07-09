@@ -24,8 +24,9 @@ Uses
   VCL.StdCtrls,
   VCL.Buttons,
   VCL.ComCtrls,
-  DGHIDEAutoSave.OptionsFrame,
-  VCL.ExtCtrls;
+  VCL.ExtCtrls,
+  DGHIDEAutoSave.Interfaces,
+  DGHIDEAutoSave.OptionsFrame;
 
 Type
   (** This class represent an options dialogue for the autosave feature. **)
@@ -39,14 +40,13 @@ Type
     FIDEAutoSaveFrame: TfmIDEAutoSaveOptions;
   Public
     {Public declarations}
-    Class Procedure Execute;
+    Class Procedure Execute(Const Settings : IDGHIDEAutoSaveSettings);
   End;
 
 Implementation
 
 Uses
-  DGHIDEAutoSave.Types,
-  DGHIDEAutoSave.Settings;
+  DGHIDEAutoSave.Types;
 
 {$R *.DFM}
 
@@ -57,31 +57,20 @@ Uses
   @precon  None.
   @postcon Displays the AuotSave optins dialogue for settings the auto save attributes.
 
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+
 **)
-Class Procedure TfrmAutoSaveOptions.Execute;
+Class Procedure TfrmAutoSaveOptions.Execute(Const Settings : IDGHIDEAutoSaveSettings);
 
 Var
-  iInterval : Integer;
-  boolEnabled, boolPrompt : Boolean;
   F: TfrmAutoSaveOptions;
-  eCompileType: TDGHIDEAutoSaveCompileType;
 
 Begin
   F := TfrmAutoSaveOptions.Create(Nil);
     Try
-      iInterval := AppOptions.Interval;
-      boolEnabled := AppOptions.Enabled;
-      boolPrompt := AppOptions.Prompt;
-      eCompileType := AppOptions.CompileType;
-      F.FIDEAutoSaveFrame.InitialiseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
+      F.FIDEAutoSaveFrame.InitialiseFrame(Settings);
       If F.ShowModal = mrOK Then
-        Begin
-          F.FIDEAutoSaveFrame.FinaliseFrame(iInterval, boolPrompt, boolEnabled, eCompileType);
-          AppOptions.Interval := iInterval;
-          AppOptions.Enabled := boolEnabled;
-          AppOptions.Prompt := boolPrompt;
-          AppOptions.CompileType := eCompileType;
-        End;
+        F.FIDEAutoSaveFrame.FinaliseFrame(Settings);
     Finally
       F.Free;
     End;

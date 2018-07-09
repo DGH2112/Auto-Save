@@ -12,7 +12,8 @@ Unit DGHIDEAutoSave.CompileNotifier;
 Interface
 
 Uses
-  ToolsAPI;
+  ToolsAPI,
+  DGHIDEAutoSave.Interfaces;
 
 Type
   (** A class to implement the IOTACompileNotifier interface. **)
@@ -21,13 +22,15 @@ Type
     Class Var
       (** A class variable to hold the comppile notifier index. **)
       FCompileNotifierIndex :Integer;
+      (** A reference to the settings interfaces **)
+      FSettings : IDGHIDEAutoSaveSettings;
   Strict Protected
     Procedure ProjectCompileFinished(Const Project: IOTAProject; Result: TOTACompileResult);
     Procedure ProjectCompileStarted(Const Project: IOTAProject; Mode: TOTACompileMode);
     Procedure ProjectGroupCompileFinished(Result: TOTACompileResult);
     Procedure ProjectGroupCompileStarted(Mode: TOTACompileMode);
   Public
-    Class Procedure InstallIDECompilationEventHandler;
+    Class Procedure InstallIDECompilationEventHandler(Const Settings : IDGHIDEAutoSaveSettings);
     Class Procedure UninstallIDECompilationEventHandler;
   End;
   
@@ -35,7 +38,6 @@ Implementation
 
 Uses
   System.SysUtils,
-  DGHIDEAutoSave.Settings, //: @todo Tnis can be removed of class created with IDGHIDEAutoSaveSettings.
   DGHIDEAutoSave.Types,
   DGHIDEAutoSave.ToolsAPIFunctions;
 
@@ -46,13 +48,17 @@ Uses
   @precon  None.
   @postcon The compile notifier is installed.
 
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+
 **)
-Class Procedure TDGHIDEAutoSaveCompileNotifier.InstallIDECompilationEventHandler;
+Class Procedure TDGHIDEAutoSaveCompileNotifier.InstallIDECompilationEventHandler(
+  Const Settings : IDGHIDEAutoSaveSettings);
 
 Var
   CS : IOTACompileServices;
   
 Begin
+  FSettings := Settings;
   FCompileNotifierIndex := -1;
   If Supports(BorlandIDEServices, IOTACompileServices, CS) Then
     FCompileNotifierIndex := CS.AddNotifier(TDGHIDEAutoSaveCompileNotifier.Create);
@@ -76,8 +82,8 @@ Procedure TDGHIDEAutoSaveCompileNotifier.ProjectCompileFinished(Const Project: I
   Result: TOTACompileResult);
 
 Begin
-  If (Result = crOTASucceeded) And (AppOptions.CompileType = asctAfterCompileProject) Then
-    TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(Project);
+  If (Result = crOTASucceeded) And (FSettings.CompileType = asctAfterCompileProject) Then
+    TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(FSettings, Project);
 End;
 
 (**
@@ -99,8 +105,8 @@ Procedure TDGHIDEAutoSaveCompileNotifier.ProjectCompileStarted(Const Project: IO
   Mode: TOTACompileMode);
 
 Begin
-  If AppOptions.CompileType = asctBeforeCompileProject Then
-    TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(Project);
+  If FSettings.CompileType = asctBeforeCompileProject Then
+    TDGHIDEAutoSaveToolsAPIFunctions.SaveProjectModifiedFiles(FSettings, Project);
 End;
 
 (**
@@ -119,8 +125,8 @@ End;
 Procedure TDGHIDEAutoSaveCompileNotifier.ProjectGroupCompileFinished(Result: TOTACompileResult);
 
 Begin
-  If (Result = crOTASucceeded) And (AppOptions.CompileType = asctAfterCompileAll) Then
-    TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles;
+  If (Result = crOTASucceeded) And (FSettings.CompileType = asctAfterCompileAll) Then
+    TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings);
 End;
 
 (**
@@ -140,8 +146,8 @@ End;
 Procedure TDGHIDEAutoSaveCompileNotifier.ProjectGroupCompileStarted(Mode: TOTACompileMode);
 
 Begin
-  If AppOptions.CompileType = asctBeforeCompileAll Then
-    TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles;
+  If FSettings.CompileType = asctBeforeCompileAll Then
+    TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings);
 End;
 
 (**

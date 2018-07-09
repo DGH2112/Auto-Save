@@ -26,7 +26,8 @@ Uses
   VCL.ComCtrls,
   VCL.Buttons,
   VCL.ExtCtrls,
-  DGHIDEAutoSave.Types;
+  DGHIDEAutoSave.Types,
+  DGHIDEAutoSave.Interfaces;
 
 Type
   (** A frame to represent the settings interface. **)
@@ -43,10 +44,8 @@ Type
     {Private declarations}
   Public
     {Public declarations}
-    Procedure InitialiseFrame(Const iInterval: Integer; Const boolPrompt, boolEnabled: Boolean;
-      Const eCompileType : TDGHIDEAutoSaveCompileType);
-    Procedure FinaliseFrame(Var iInterval: Integer; Var boolPrompt, boolEnabled: Boolean;
-      Var eCompileType : TDGHIDEAutoSaveCompileType);
+    Procedure InitialiseFrame(Const Settings : IDGHIDEAutoSaveSettings);
+    Procedure FinaliseFrame(Const Settings : IDGHIDEAutoSaveSettings);
   End;
 
 Implementation
@@ -81,20 +80,16 @@ End;
   @precon  None.
   @postcon Initialises the interface with the given settings.
 
-  @param   iInterval    as an Integer as a reference
-  @param   boolPrompt   as a Boolean as a reference
-  @param   boolEnabled  as a Boolean as a reference
-  @param   eCompileType as a TDGHIDEAutoSaveCompileType as a reference
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
 
 **)
-Procedure TfmIDEAutoSaveOptions.FinaliseFrame(Var iInterval: Integer; Var boolPrompt,
-  boolEnabled: Boolean; Var eCompileType : TDGHIDEAutoSaveCompileType);
+Procedure TfmIDEAutoSaveOptions.FinaliseFrame(Const Settings : IDGHIDEAutoSaveSettings);
 
 Begin
-  iInterval := udAutoSaveInterval.Position;
-  boolPrompt := cbxPrompt.Checked;
-  boolEnabled := chkEnabled.Checked;
-  eCompileType := TDGHIDEAutoSaveCompileType(rgrpCompileType.ItemIndex);
+  Settings.Interval := udAutoSaveInterval.Position;
+  Settings.Prompt := cbxPrompt.Checked;
+  Settings.Enabled := chkEnabled.Checked;
+  Settings.CompileType := TDGHIDEAutoSaveCompileType(rgrpCompileType.ItemIndex);
 End;
 
 (**
@@ -105,20 +100,16 @@ End;
   @precon  None.
   @postcon Initialises the interface with the given settings.
 
-  @param   iInterval    as an Integer as a constant
-  @param   boolPrompt   as a Boolean as a constant
-  @param   boolEnabled  as a Boolean as a constant
-  @param   eCompileType as a TDGHIDEAutoSaveCompileType as a constant
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
 
 **)
-Procedure TfmIDEAutoSaveOptions.InitialiseFrame(Const iInterval: Integer; Const boolPrompt, boolEnabled: Boolean;
-      Const eCompileType : TDGHIDEAutoSaveCompileType);
+Procedure TfmIDEAutoSaveOptions.InitialiseFrame(Const Settings : IDGHIDEAutoSaveSettings);
 
 Begin
-  udAutoSaveInterval.Position := iInterval;
-  cbxPrompt.Checked := boolPrompt;
-  chkEnabled.Checked := boolEnabled;
-  rgrpCompileType.ItemIndex := Integer(eCompileType);
+  udAutoSaveInterval.Position := Settings.Interval;
+  cbxPrompt.Checked := Settings.Prompt;
+  chkEnabled.Checked := Settings.Enabled;
+  rgrpCompileType.ItemIndex := Integer(Settings.CompileType);
   chkEnabledClick(Nil);
 End;
 
