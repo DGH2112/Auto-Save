@@ -12,6 +12,7 @@
 Library DGHIDEAutoSave;
 
 {$R 'SplashScreenIcon.res' 'Source\SplashScreenIcon.RC'}
+{$R 'DGHIDEAutoSaveITHVerInfo.res' 'DGHIDEAutoSaveITHVerInfo.RC'}
 {$INCLUDE Source\CompilerDefinitions.inc}
 {$INCLUDE Source\LibrarySuffixes.inc}
 

@@ -3,7 +3,7 @@
   This method contains a Delphi IDE wizard that auto saves the modules at a
   specified interval.
 
-  @Date    07 Jul 2018
+  @Date    09 Jul 2018
   @Version 2.1
   @Author  David Hoyle
 
@@ -15,10 +15,6 @@ Interface
 
 Uses
   ToolsAPI;
-
-{$INCLUDE CompilerDefinitions.inc}
-{$R 'SplashScreenIcon.res' '..\Source\SplashScreenIcon.RC'}
-{$R ..\Packages\IDEAutoSaveITHVerInfo.RES ..\Packages\IDEAutoSaveITHVerInfo.RC}
 
   Procedure Register;
 

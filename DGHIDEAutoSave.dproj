@@ -102,6 +102,9 @@
         <RcCompile Include="Source\SplashScreenIcon.RC">
             <Form>SplashScreenIcon.res</Form>
         </RcCompile>
+        <RcCompile Include="DGHIDEAutoSaveITHVerInfo.RC">
+            <Form>DGHIDEAutoSaveITHVerInfo.res</Form>
+        </RcCompile>
         <DCCReference Include="Source\DGHIDEAutoSave.Wizard.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.ToolsAPIFunctions.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.Settings.pas"/>
