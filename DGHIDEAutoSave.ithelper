@@ -8,24 +8,21 @@ CompileWithBRCC32=0
 MajorVer=2
 MinorVer=1
 ReleaseVer=0
-BuildVer=184
+BuildVer=185
 ResourceName=DGHIDEAutoSaveITHVerInfo
 WarnBefore=0
 WarnAfter=0
 
 [Zipping]
 Enabled=1
-ZipFile=D:\Documents\Web Page\Zips\IDEAutoSave.zip
+ZipFile=D:\Documents\Web Page\Zips\DGHIDEAutoSave.zip
 BasePath=D:\Documents\RAD Studio\
 ExclusionFiles=
-
-[Additional Zip Files]
-Item0=D:\Documents\RAD Studio\IDE Addins\AutoSave\Images\*.bmp
 
 [VersionInfo]
 CompanyName=Season's Fall Music
 FileDescription=IDE AutoSave - An auto save wizard for RAD Studio
-FileVersion=2.1.0.184
+FileVersion=2.1.0.185
 InternalName=IDEAutoSave
 LegalCopyright=Season's Fall Music
 LegalTrademarks=Season's Fall Music
@@ -33,4 +30,7 @@ OriginalFilename=IDEAutoSave
 ProductName=IDEAutoSave
 ProductVersion=2.1
 Comments=IDE AutoSave - An auto save wizard for RAD Studio
+
+[Additional Zip Files]
+Item0=D:\Documents\RAD Studio\IDE Addins\AutoSave\Images\*.bmp
 

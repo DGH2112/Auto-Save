@@ -3,11 +3,8 @@
         <ProjectGuid>{69A23C8A-F88E-4AC1-86A7-B294A9009D32}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Packages\IDEAutoSaveXE102.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="DGHIDEAutoSave.dproj">
-            <Dependencies>Packages\IDEAutoSaveXE102.dproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -17,32 +14,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="IDEAutoSaveXE102">
-        <MSBuild Projects="Packages\IDEAutoSaveXE102.dproj"/>
-    </Target>
-    <Target Name="IDEAutoSaveXE102:Clean">
-        <MSBuild Projects="Packages\IDEAutoSaveXE102.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="IDEAutoSaveXE102:Make">
-        <MSBuild Projects="Packages\IDEAutoSaveXE102.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="DGHIDEAutoSave" DependsOnTargets="IDEAutoSaveXE102">
+    <Target Name="DGHIDEAutoSave">
         <MSBuild Projects="DGHIDEAutoSave.dproj"/>
     </Target>
-    <Target Name="DGHIDEAutoSave:Clean" DependsOnTargets="IDEAutoSaveXE102:Clean">
+    <Target Name="DGHIDEAutoSave:Clean">
         <MSBuild Projects="DGHIDEAutoSave.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="DGHIDEAutoSave:Make" DependsOnTargets="IDEAutoSaveXE102:Make">
+    <Target Name="DGHIDEAutoSave:Make">
         <MSBuild Projects="DGHIDEAutoSave.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="IDEAutoSaveXE102;DGHIDEAutoSave"/>
+        <CallTarget Targets="DGHIDEAutoSave"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="IDEAutoSaveXE102:Clean;DGHIDEAutoSave:Clean"/>
+        <CallTarget Targets="DGHIDEAutoSave:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="IDEAutoSaveXE102:Make;DGHIDEAutoSave:Make"/>
+        <CallTarget Targets="DGHIDEAutoSave:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
