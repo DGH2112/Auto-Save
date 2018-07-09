@@ -26,6 +26,8 @@ Type
     Procedure SetPrompt(Const boolValue : Boolean);
     Function  GetCompileType : TDGHIDEAutoSaveCompileType;
     Procedure SetCompileType(Const eCompileType : TDGHIDEAutoSaveCompileType);
+    Function  GetMessages : Boolean;
+    Procedure SetMessages(Const boolValue : Boolean);
     (**
       This property determines whether the autosave functionality is enabled or disabled.
       @precon  None.
@@ -57,6 +59,13 @@ Type
       @return  a TDGHIDEAutoSaveCompileType
     **)
     Property CompileType : TDGHIDEAutoSaveCompileType Read GetCompileType Write SetCompileType;
+    (**
+      This property determines if savded messages are written to the message window for each file saved.
+      @precon  None.
+      @postcon Determines if savded messages are written to the message window for each file saved.
+      @return  a Boolean
+    **)
+    Property Messages : Boolean Read GetMessages Write SetMessages;
   End;
 
 Implementation

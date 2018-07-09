@@ -54,14 +54,15 @@ Var
   MS : IOTAMessageServices;
   
 Begin
-  If Supports(BorlandIDEServices, IOTAMessageServices, MS) Then
-    MS.AddToolMessage(
-      strFileName,
-      strSaved,
-      strDGHIDEAutoSave,
-      0,
-      0
-    );
+  If Settings.Messages Then
+    If Supports(BorlandIDEServices, IOTAMessageServices, MS) Then
+      MS.AddToolMessage(
+        strFileName,
+        strSaved,
+        strDGHIDEAutoSave,
+        0,
+        0
+      );
 End;
 
 (**

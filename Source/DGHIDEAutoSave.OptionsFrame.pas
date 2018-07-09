@@ -39,6 +39,7 @@ Type
     cbxPrompt: TCheckBox;
     chkEnabled: TCheckBox;
     rgrpCompileType: TRadioGroup;
+    chkMessages: TCheckBox;
     Procedure chkEnabledClick(Sender: TObject);
   Private
     {Private declarations}
@@ -90,6 +91,7 @@ Begin
   Settings.Prompt := cbxPrompt.Checked;
   Settings.Enabled := chkEnabled.Checked;
   Settings.CompileType := TDGHIDEAutoSaveCompileType(rgrpCompileType.ItemIndex);
+  Settings.Messages := chkMessages.Checked;
 End;
 
 (**
@@ -110,6 +112,7 @@ Begin
   cbxPrompt.Checked := Settings.Prompt;
   chkEnabled.Checked := Settings.Enabled;
   rgrpCompileType.ItemIndex := Integer(Settings.CompileType);
+  chkMessages.Checked := Settings.Messages;
   chkEnabledClick(Nil);
 End;
 

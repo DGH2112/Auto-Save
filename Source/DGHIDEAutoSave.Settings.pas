@@ -24,6 +24,7 @@ Type
     FInterval: Integer;
     FPrompt: Boolean;
     FCompileType : TDGHIDEAutoSaveCompileType;
+    FMessages : Boolean;
   Strict Protected
     Function  GetEnabled: Boolean;
     Procedure SetEnabled(Const boolValue: Boolean);
@@ -33,6 +34,8 @@ Type
     Procedure SetPrompt(Const boolValue: Boolean);
     Function  GetCompileType: TDGHIDEAutoSaveCompileType;
     Procedure SetCompileType(Const eCompileType: TDGHIDEAutoSaveCompileType);
+    Function  GetMessages: Boolean;
+    Procedure SetMessages(Const boolValue: Boolean);
     Procedure LoadSettings;
     Procedure SaveSettings;
   Public
@@ -61,6 +64,8 @@ Const
   strEnabledKey = 'Enabled';
   (** An INI Key Name for the Compile Type. **)
   strCompileTypeKey = 'CompileType';
+  (** An INI Key Name for the Messages. **)
+  strMessagesKey = 'Messages';
 
 (**
 
@@ -144,6 +149,22 @@ End;
 
 (**
 
+  This is a getter method for the Messages property.
+
+  @precon  None.
+  @postcon Returns whether a message should be displayed for each file saved.
+
+  @return  a Boolean
+
+**)
+Function TDGHIDEAutoSaveSettings.GetMessages: Boolean;
+
+Begin
+  Result := FMessages;
+End;
+
+(**
+
   This is a getter method for the Prompt property.
 
   @precon  None.
@@ -181,6 +202,7 @@ Begin
     FEnabled := riniFile.ReadBool(strRegistryKey + strSetupINISection, strEnabledKey, True);
     FCompileType := TDGHIDEAutoSaveCompileType(riniFile.ReadInteger(strRegistryKey + strSetupINISection,
       strCompileTypeKey, Byte(asctNone)));
+    FMessages := riniFile.ReadBool(strRegistryKey + strSetupINISection, strMessagesKey, True);
   Finally
     riniFile.Free;
   End;
@@ -206,6 +228,7 @@ Begin
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strPromptKey, FPrompt);
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strEnabledKey, FEnabled);
     riniFile.WriteInteger(strRegistryKey + strSetupINISection, strCompileTypeKey, Byte(FCompileType));
+    riniFile.WriteBool(strRegistryKey + strSetupINISection, strMessagesKey, FMessages);
   Finally
     riniFile.Free;
   End;
@@ -257,6 +280,22 @@ Procedure TDGHIDEAutoSaveSettings.SetInterval(Const iValue: Integer);
 
 Begin
   FInterval := iValue;
+End;
+
+(**
+
+  This is a setter method for the Messages property.
+
+  @precon  None.
+  @postcon Settings whether messages are output for each file saved.
+
+  @param   boolValue as a Boolean as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetMessages(Const boolValue: Boolean);
+
+Begin
+  FMessages := boolValue;
 End;
 
 (**

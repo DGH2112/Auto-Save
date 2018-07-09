@@ -3,8 +3,8 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
   Top = 427
   BorderStyle = bsDialog
   Caption = 'Auto Save Options'
-  ClientHeight = 299
-  ClientWidth = 412
+  ClientHeight = 349
+  ClientWidth = 335
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,43 +15,43 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
   Position = poScreenCenter
   OnCreate = FormCreate
   DesignSize = (
-    412
-    299)
+    335
+    349)
   PixelsPerInch = 96
   TextHeight = 16
   object btnCancel: TBitBtn
-    Left = 329
-    Top = 266
+    Left = 252
+    Top = 316
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Kind = bkCancel
     NumGlyphs = 2
     TabOrder = 2
-    ExplicitLeft = 263
-    ExplicitTop = 126
+    ExplicitLeft = 329
+    ExplicitTop = 266
   end
   object btnOK: TBitBtn
-    Left = 248
-    Top = 266
+    Left = 171
+    Top = 316
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Kind = bkOK
     NumGlyphs = 2
     TabOrder = 1
-    ExplicitLeft = 182
-    ExplicitTop = 126
+    ExplicitLeft = 248
+    ExplicitTop = 266
   end
   object pnlFrame: TPanel
     Left = 8
     Top = 8
-    Width = 396
-    Height = 252
+    Width = 319
+    Height = 302
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 330
-    ExplicitHeight = 112
+    ExplicitWidth = 396
+    ExplicitHeight = 252
   end
 end
