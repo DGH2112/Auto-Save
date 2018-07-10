@@ -124,7 +124,6 @@ Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveModule(Const Settings : IDG
   Const Module : IOTAModule);
 
 Begin
-  CodeSite.Sendif(Assigned(Module), Module.FileName);
   If Assigned(Module) And Assigned(Module.CurrentEditor) And Module.CurrentEditor.Modified Then
     Begin
       Module.Save(False, Not Settings.Prompt);
