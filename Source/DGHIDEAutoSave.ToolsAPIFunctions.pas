@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Jul 2018
+  @Date    10 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.ToolsAPIFunctions;
@@ -21,6 +21,8 @@ Type
   Strict Private
     Class Procedure OutputMessage(Const Settings : IDGHIDEAutoSaveSettings;
       Const strFileName : String); Static;
+    Class Procedure SaveModule(Const Settings : IDGHIDEAutoSaveSettings; Const Module : IOTAModule);
+      Static;
   Public
     Class Procedure SaveAllModifiedFiles(Const Settings : IDGHIDEAutoSaveSettings); Static;
     Class Procedure SaveProjectModifiedFiles(Const Settings : IDGHIDEAutoSaveSettings;
@@ -30,6 +32,9 @@ Type
 Implementation
 
 Uses
+  {$IFDEF DEBUG}
+  CodeSiteLogging,
+  {$ENDIF}
   System.SysUtils;
 
 (**
@@ -105,6 +110,30 @@ End;
 
 (**
 
+  This method attempts to save the given module is if the module is valid, its current editor are valid
+  and the editor is modified.
+
+  @precon  None.
+  @postcon If the module has been modified it is saved.
+
+  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+  @param   Module   as an IOTAModule as a constant
+
+**)
+Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.SaveModule(Const Settings : IDGHIDEAutoSaveSettings;
+  Const Module : IOTAModule);
+
+Begin
+  CodeSite.Sendif(Assigned(Module), Module.FileName);
+  If Assigned(Module) And Assigned(Module.CurrentEditor) And Module.CurrentEditor.Modified Then
+    Begin
+      Module.Save(False, Not Settings.Prompt);
+      OutputMessage(Settings, Module.FileName);
+    End;
+End;
+
+(**
+
   This method iterate through the files in the project and saves any files that have been modified.
 
   @precon  None.
@@ -125,21 +154,18 @@ Var
 
 Begin
   If Assigned(Project) Then
-    Begin
-      For iModule := 0 To Project.GetModuleCount - 1 Do
-        Begin
-          MI := Project.GetModule(iModule);
-          If Supports(BorlandIDEServices, IOTAModuleServices, MS) Then
-            Begin
-              M := MS.FindModule(MI.FileName);
-              If Assigned(M) Then
-                Begin 
-                  M.Save(False, Not Settings.Prompt);
-                  OutputMessage(Settings, MI.FileName);
-                End;
-            End;
-        End;
-    End;
+    If Supports(BorlandIDEServices, IOTAModuleServices, MS) Then
+      Begin
+        For iModule := 0 To Project.GetModuleCount - 1 Do
+          Begin
+            MI := Project.GetModule(iModule);
+            M := MS.FindModule(MI.FileName);
+            If Assigned(M) Then
+              SaveModule(Settings, M);
+          End;
+        For iModule := 0 To Project.ModuleFileCount - 1 Do
+          SaveModule(Settings, Project);
+      End;
 End;
 
 End.
