@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.Wizard;
@@ -16,7 +16,7 @@ Uses
   VCL.Extctrls,
   VCL.Menus,
   DGHIDEAutoSave.Interfaces,
-  DGHIDEAutoSave.IDEOptionsInterface;
+  DGHIDEAutoSave.IDEOptionsInterface, DGHIDEAutoSave.ResourceStrings;
 
 {$INCLUDE CompilerDefinitions.inc}
 
@@ -116,9 +116,6 @@ End;
 **)
 Procedure TDGHAutoSaveWizard.Execute;
 
-ResourceString
-  strIDEAutoSaveOptions = 'IDE Auto Save.Options';
-
 Begin
   {$IFDEF DXE00}
   (BorlandIDEServices As IOTAServices).GetEnvironmentOptions.EditOptions('', strIDEAutoSaveOptions);
@@ -141,7 +138,7 @@ End;
 Function TDGHAutoSaveWizard.GetIDString: String;
 
 ResourceString
-  strSeasonFallDGHAutoSave = 'Season''s Fall.DGH Auto Save';
+  strSeasonFallDGHAutoSave = 'Season''s Fall.DGH IDE Auto Save';
 
 Begin
   Result := strSeasonFallDGHAutoSave;
@@ -160,7 +157,7 @@ End;
 Function TDGHAutoSaveWizard.GetMenuText: String;
 
 ResourceString
-  strIDEAutoSaveOptions = 'IDE AutoSave Options...';
+  strIDEAutoSaveOptions = 'DGH IDE Auto Save Options...';
 
 Begin
   Result := strIDEAutoSaveOptions;
@@ -179,7 +176,7 @@ End;
 Function TDGHAutoSaveWizard.GetName: String;
 
 ResourceString
-  strDGHAutoSave = 'DGH Auto Save.';
+  strDGHAutoSave = 'DGH IDE Auto Save.';
 
 Begin
   Result := strDGHAutoSave;

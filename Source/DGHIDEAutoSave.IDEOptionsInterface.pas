@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.IDEOptionsInterface;
@@ -16,7 +16,7 @@ Uses
   ToolsAPI,
   VCL.Forms,
   DGHIDEAutoSave.Interfaces,
-  DGHIDEAutoSave.OptionsFrame;
+  DGHIDEAutoSave.OptionsFrame, DGHIDEAutoSave.ResourceStrings;
 
 {$INCLUDE CompilerDefinitions.inc}
 
@@ -143,9 +143,6 @@ End;
 
 **)
 Function TDGHIDEAutoSaveOptionsInterface.GetCaption: String;
-
-ResourceString
-  strIDEAutoSaveOptions = 'IDE Auto Save.Options';
 
 Begin
   Result := strIDEAutoSaveOptions;
