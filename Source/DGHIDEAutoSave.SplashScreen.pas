@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.SplashScreen;
@@ -64,7 +64,7 @@ Begin
           Copy(strRevision, VersionInfo.iBugFix + 1, 1),
           Application.Title]),
         bmSplashScreen,
-        False,
+        {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
         Format(strSplashScreenBuild, [
           VersionInfo.iMajor,
           VersionInfo.iMinor,

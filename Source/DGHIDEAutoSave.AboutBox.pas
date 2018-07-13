@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.AboutBox;
@@ -73,7 +73,7 @@ Begin
           Application.Title]),
         strAutoSaveWizardForRADStudioIDE,
         bmSplashScreen,
-        False,
+        {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
         Format(strSplashScreenBuild, [
           VersionInfo.iMajor,
           VersionInfo.iMinor,
