@@ -222,3 +222,7 @@ pip-log.txt
 *.stat
 *.~dsk
 *.~dsk
+*.dll
+OLD DLLs/
+*.dsk
+*.tvsconfig
