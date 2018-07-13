@@ -68,6 +68,7 @@ Const
   iOneSecond = 1000;
 
 Begin
+  Inherited Create;
   FSettings := TDGHIDEAutoSaveSettings.Create;
   TDGHAutoSaveSplashScreen.AddSplashScreen;
   TDGHIDEAutoSaveAboutBox.InstallAboutBox;
