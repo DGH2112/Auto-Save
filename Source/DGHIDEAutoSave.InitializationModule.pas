@@ -3,7 +3,7 @@
   This method contains a Delphi IDE wizard that auto saves the modules at a
   specified interval.
 
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
   @Version 2.1
   @Author  David Hoyle
 
@@ -48,7 +48,7 @@ Uses
 
 **)
 Function InitWizard(Const BorlandIDEServices : IBorlandIDEServices; RegisterProc : TWizardRegisterProc;
-  var Terminate: TWizardTerminateProc) : Boolean; StdCall;
+  var Terminate: TWizardTerminateProc) : Boolean; StdCall; //FI:O804
 
 Begin
   Result := BorlandIDEServices <> Nil;

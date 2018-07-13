@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    10 Jul 2018
+  @Date    13 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.ToolsAPIFunctions;
@@ -162,8 +162,7 @@ Begin
             If Assigned(M) Then
               SaveModule(Settings, M);
           End;
-        For iModule := 0 To Project.ModuleFileCount - 1 Do
-          SaveModule(Settings, Project);
+        SaveModule(Settings, Project);
       End;
 End;
 

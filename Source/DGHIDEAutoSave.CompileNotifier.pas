@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Jul 2018
+  @Date    13 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.CompileNotifier;
@@ -102,7 +102,7 @@ End;
 
 **)
 Procedure TDGHIDEAutoSaveCompileNotifier.ProjectCompileStarted(Const Project: IOTAProject;
-  Mode: TOTACompileMode);
+  Mode: TOTACompileMode); //FI:O804
 
 Begin
   If FSettings.CompileType = asctBeforeCompileProject Then
@@ -143,7 +143,7 @@ End;
   @param   Mode as a TOTACompileMode
 
 **)
-Procedure TDGHIDEAutoSaveCompileNotifier.ProjectGroupCompileStarted(Mode: TOTACompileMode);
+Procedure TDGHIDEAutoSaveCompileNotifier.ProjectGroupCompileStarted(Mode: TOTACompileMode);//FI:O804
 
 Begin
   If FSettings.CompileType = asctBeforeCompileAll Then
