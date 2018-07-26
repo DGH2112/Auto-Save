@@ -125,6 +125,7 @@
         <DCCReference Include="Source\DGHIDEAutoSave.Interfaces.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.Constants.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.AboutBox.pas"/>
+        <DCCReference Include="Source\DGHIDEAutoSave.CustomMessage.pas"/>
         <None Include="Source\CompilerDefinitions.inc"/>
         <None Include="README.md"/>
         <None Include="License.md"/>
