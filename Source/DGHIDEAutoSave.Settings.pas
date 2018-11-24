@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    09 Jul 2018
+  @Date    23 Jul 2018
 
 **)
 Unit DGHIDEAutoSave.Settings;
@@ -13,6 +13,7 @@ Unit DGHIDEAutoSave.Settings;
 Interface
 
 Uses
+  Graphics,
   DGHIDEAutoSave.Types,
   DGHIDEAutoSave.Interfaces;
 
@@ -20,12 +21,15 @@ Type
   (** A class to handle the loading and saving of the applications settings. **)
   TDGHIDEAutoSaveSettings = Class(TInterfacedObject, IDGHIDEAutoSaveSettings)
   Strict Private
-    FEnabled: Boolean;
-    FInterval: Integer;
-    FPrompt: Boolean;
-    FCompileType : TDGHIDEAutoSaveCompileType;
-    FMessages : Boolean;
-  Strict Protected
+    FEnabled       : Boolean;
+    FInterval      : Integer;
+    FPrompt        : Boolean;
+    FCompileType   : TDGHIDEAutoSaveCompileType;
+    FMessages      : Boolean;
+    FMessageColour : TColor;
+    FMessageStyles : TFontStyles;
+  Strict Protected    
+    // IDGHDEAutoSaveSettings
     Function  GetEnabled: Boolean;
     Procedure SetEnabled(Const boolValue: Boolean);
     Function  GetInterval: Integer;
@@ -36,6 +40,11 @@ Type
     Procedure SetCompileType(Const eCompileType: TDGHIDEAutoSaveCompileType);
     Function  GetMessages: Boolean;
     Procedure SetMessages(Const boolValue: Boolean);
+    Function  GetMessageColour : TColor;
+    Procedure SetMessageColour(Const iValue : TColor);
+    Function  GetMessageStyles : TFontStyles;
+    Procedure SetMessageStyles(Const setValue : TFontStyles);
+    // General Methods
     Procedure LoadSettings;
     Procedure SaveSettings;
   Public
@@ -66,6 +75,10 @@ Const
   strCompileTypeKey = 'CompileType';
   (** An INI Key Name for the Messages. **)
   strMessagesKey = 'Messages';
+  (** An INI Key Name for the Message Colour. **)
+  strMessageColourKey = 'MessageColour';
+  (** An INI Key Name for the Message Font Style. **)
+  strMessageStylesKey = 'MessageStyles';
 
 (**
 
@@ -149,6 +162,22 @@ End;
 
 (**
 
+  This is a getter method for the MessageColour property.
+
+  @precon  None.
+  @postcon Returns the colour of the custom messages.
+
+  @return  a TColor
+
+**)
+Function TDGHIDEAutoSaveSettings.GetMessageColour: TColor;
+
+Begin
+  Result := FMessageColour;
+End;
+
+(**
+
   This is a getter method for the Messages property.
 
   @precon  None.
@@ -161,6 +190,22 @@ Function TDGHIDEAutoSaveSettings.GetMessages: Boolean;
 
 Begin
   Result := FMessages;
+End;
+
+(**
+
+  This is a getter method for the NessageStyles property.
+
+  @precon  None.
+  @postcon Returns the font style of the custom messages.
+
+  @return  a TFontStyles
+
+**)
+Function TDGHIDEAutoSaveSettings.GetMessageStyles: TFontStyles;
+
+Begin
+  Result := FMessageStyles;
 End;
 
 (**
@@ -190,6 +235,9 @@ End;
 **)
 Procedure TDGHIDEAutoSaveSettings.LoadSettings;
 
+Const
+  strDefaultMessageColour = 'clBlack';
+
 Var
   riniFile: TRegIniFile;
 
@@ -203,6 +251,10 @@ Begin
     FCompileType := TDGHIDEAutoSaveCompileType(riniFile.ReadInteger(strRegistryKey + strSetupINISection,
       strCompileTypeKey, Byte(asctNone)));
     FMessages := riniFile.ReadBool(strRegistryKey + strSetupINISection, strMessagesKey, True);
+    FMessageColour := StringToColor(riniFile.ReadString(strRegistryKey + strSetupINISection,
+      strMessageColourKey, strDefaultMessageColour));
+    FMessageStyles := TFontStyles(Byte(riniFile.ReadInteger(strRegistryKey + strSetupINISection,
+      strMessageStylesKey, 0)));
   Finally
     riniFile.Free;
   End;
@@ -229,6 +281,9 @@ Begin
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strEnabledKey, FEnabled);
     riniFile.WriteInteger(strRegistryKey + strSetupINISection, strCompileTypeKey, Byte(FCompileType));
     riniFile.WriteBool(strRegistryKey + strSetupINISection, strMessagesKey, FMessages);
+    riniFile.WriteString(strRegistryKey + strSetupINISection, strMessageColourKey,
+      ColorToString(FMessageColour));
+    riniFile.ReadInteger(strRegistryKey + strSetupINISection, strMessageStylesKey, Byte(FMessageStyles));
   Finally
     riniFile.Free;
   End;
@@ -284,6 +339,22 @@ End;
 
 (**
 
+  This is a setter method for the MessageColour property.
+
+  @precon  None.
+  @postcon Sets the custom message colour.
+
+  @param   iValue as a TColor as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetMessageColour(Const iValue: TColor);
+
+Begin
+  FMessageColour := iValue;
+End;
+
+(**
+
   This is a setter method for the Messages property.
 
   @precon  None.
@@ -296,6 +367,22 @@ Procedure TDGHIDEAutoSaveSettings.SetMessages(Const boolValue: Boolean);
 
 Begin
   FMessages := boolValue;
+End;
+
+(**
+
+  This is a setter method for the MessageStyles property.
+
+  @precon  None.
+  @postcon Sets the custom message font styles.
+
+  @param   setValue as a TFontStyles as a constant
+
+**)
+Procedure TDGHIDEAutoSaveSettings.SetMessageStyles(Const setValue: TFontStyles);
+
+Begin
+  FMessageStyles := setValue;
 End;
 
 (**

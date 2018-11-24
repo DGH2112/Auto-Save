@@ -3,9 +3,9 @@
 
 Author: David Hoyle
 
-Version: 2.1
+Version: 2.2
 
-Date: 13 Jul 2018
+Date: 24 Nov 2018
 
 Web Page: http://www.davidghoyle.co.uk/WordPress/?page_id=918
 
@@ -26,10 +26,8 @@ the code be used in a commercial product with out the author's consent.
 
 regards
 
-David Hoyle (c) 13 Jul 2018
+David Hoyle (c) 24 Nov 2018
 
 davidghoyle@gmail.com
-
-Web Page: http://www.davidghoyle.co.uk/WordPress/?page_id=918
 
 Season's Fall Music

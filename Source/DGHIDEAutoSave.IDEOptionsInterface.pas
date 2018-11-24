@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
 
 **)
 Unit DGHIDEAutoSave.IDEOptionsInterface;
@@ -16,7 +16,8 @@ Uses
   ToolsAPI,
   VCL.Forms,
   DGHIDEAutoSave.Interfaces,
-  DGHIDEAutoSave.OptionsFrame, DGHIDEAutoSave.ResourceStrings;
+  DGHIDEAutoSave.OptionsFrame,
+  DGHIDEAutoSave.ResourceStrings;
 
 {$INCLUDE CompilerDefinitions.inc}
 

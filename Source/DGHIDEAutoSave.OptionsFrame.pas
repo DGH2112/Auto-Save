@@ -5,7 +5,7 @@
 
   @Version 1.1
   @Author  David Hoyle
-  @Date    09 Jul 2018
+  @Date    28 Oct 2018
 
 **)
 Unit DGHIDEAutoSave.OptionsFrame;
@@ -40,7 +40,17 @@ Type
     chkEnabled: TCheckBox;
     rgrpCompileType: TRadioGroup;
     chkMessages: TCheckBox;
+    gbxMessages: TGroupBox;
+    lblMessageColour: TLabel;
+    cbxMessageColour: TColorBox;
+    chkBold: TCheckBox;
+    chkItalic: TCheckBox;
+    chkUnderline: TCheckBox;
+    chkStrikeout: TCheckBox;
+    gpnlFontStyles: TGridPanel;
+    pnlFudgePanel: TPanel;
     Procedure chkEnabledClick(Sender: TObject);
+    procedure chkMessagesClick(Sender: TObject);
   Private
     {Private declarations}
   Public
@@ -75,6 +85,28 @@ End;
 
 (**
 
+  This is an on click event handler for the Messages Checkbox control.
+
+  @precon  None.
+  @postcon Enabled or disables the message colour and styles controls.
+
+  @param   Sender as a TObject
+
+**)
+Procedure TfmIDEAutoSaveOptions.chkMessagesClick(Sender: TObject);
+
+Begin
+  gbxMessages.Enabled := chkMessages.Checked;
+  lblMessageColour.Enabled := chkMessages.Checked;
+  cbxMessageColour.Enabled := chkMessages.Checked;
+  chkBold.Enabled := chkMessages.Checked;
+  chkItalic.Enabled := chkMessages.Checked;
+  chkUnderline.Enabled := chkMessages.Checked;
+  chkStrikeout.Enabled := chkMessages.Checked;
+End;
+
+(**
+
   This method retreieves the setings from the framee interface and assigns them to the given settings. 
   This should be called when closing the hosting for / options page.
 
@@ -92,6 +124,16 @@ Begin
   Settings.Enabled := chkEnabled.Checked;
   Settings.CompileType := TDGHIDEAutoSaveCompileType(rgrpCompileType.ItemIndex);
   Settings.Messages := chkMessages.Checked;
+  Settings.MessageColour := cbxMessageColour.Selected;
+  Settings.MessageStyle := [];
+  If chkBold.Checked Then
+    Settings.MessageStyle := Settings.MessageStyle + [fsBold];
+  If chkItalic.Checked Then
+    Settings.MessageStyle := Settings.MessageStyle + [fsItalic];
+  If chkUnderline.Checked Then
+    Settings.MessageStyle := Settings.MessageStyle + [fsUnderline];
+  If chkStrikeout.Checked Then
+    Settings.MessageStyle := Settings.MessageStyle + [fsStrikeout];
 End;
 
 (**
@@ -111,9 +153,15 @@ Begin
   udAutoSaveInterval.Position := Settings.Interval;
   cbxPrompt.Checked := Settings.Prompt;
   chkEnabled.Checked := Settings.Enabled;
+  chkEnabledClick(Nil);
   rgrpCompileType.ItemIndex := Integer(Settings.CompileType);
   chkMessages.Checked := Settings.Messages;
-  chkEnabledClick(Nil);
+  cbxMessageColour.Selected := Settings.MessageColour;
+  chkBold.Checked := fsBold In Settings.MessageStyle;
+  chkItalic.Checked := fsItalic In Settings.MessageStyle;
+  chkUnderline.Checked := fsUnderline In Settings.MessageStyle;
+  chkStrikeout.Checked := fsStrikeOut In Settings.MessageStyle;
+  chkMessagesClick(Nil);
 End;
 
 End.

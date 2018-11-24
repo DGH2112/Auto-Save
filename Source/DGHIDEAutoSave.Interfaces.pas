@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    09 Jul 2018
+  @Date    23 Jul 2018
   
 **)
 Unit DGHIDEAutoSave.Interfaces;
@@ -12,6 +12,7 @@ Unit DGHIDEAutoSave.Interfaces;
 Interface
 
 Uses
+  Graphics,
   DGHIDEAutoSave.Types;
 
 Type
@@ -28,6 +29,10 @@ Type
     Procedure SetCompileType(Const eCompileType : TDGHIDEAutoSaveCompileType);
     Function  GetMessages : Boolean;
     Procedure SetMessages(Const boolValue : Boolean);
+    Function  GetMessageColour : TColor;
+    Procedure SetMessageColour(Const iValue : TColor);
+    Function  GetMessageStyles : TFontStyles;
+    Procedure SetMessageStyles(Const setValue : TFontStyles);
     (**
       This property determines whether the autosave functionality is enabled or disabled.
       @precon  None.
@@ -66,6 +71,20 @@ Type
       @return  a Boolean
     **)
     Property Messages : Boolean Read GetMessages Write SetMessages;
+    (**
+      This property determines the colour of the custom messages.
+      @precon  None.
+      @postcon Gets or sets the colour of the custom messages.
+      @return  a TColor
+    **)
+    Property MessageColour : TColor Read GetMessageColour Write SetMessageColour;
+    (**
+      This property determines the font style of the custom messages.
+      @precon  None.
+      @postcon Gets or sets the font style of the custom messages.
+      @return  a TFontStyles
+    **)
+    Property MessageStyle : TFontStyles Read GetMessageStyles Write SetMessageStyles;
   End;
 
 Implementation

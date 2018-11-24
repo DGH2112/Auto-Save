@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
   
 **)
 Unit DGHIDEAutoSave.ToolsAPIFunctions;
@@ -32,10 +32,8 @@ Type
 Implementation
 
 Uses
-  {$IFDEF DEBUG}
-  CodeSiteLogging,
-  {$ENDIF}
-  System.SysUtils;
+  System.SysUtils,
+  DGHIDEAutoSave.CustomMessage;
 
 (**
 
@@ -52,8 +50,7 @@ Class Procedure TDGHIDEAutoSaveToolsAPIFunctions.OutputMessage(Const Settings : 
   Const strFileName : String);
 
 ResourceString
-  strDGHIDEAutoSave = 'DGHIDEAutoSave';
-  strSaved = 'Saved.';
+  strAutoSaveMsg = '[AutoSave] %s: Saved!';
 
 Var
   MS : IOTAMessageServices;
@@ -61,13 +58,11 @@ Var
 Begin
   If Settings.Messages Then
     If Supports(BorlandIDEServices, IOTAMessageServices, MS) Then
-      MS.AddToolMessage(
-        strFileName,
-        strSaved,
-        strDGHIDEAutoSave,
-        0,
-        0
-      );
+      MS.AddCustomMessage(TDGHIDEAutoSaveCustomMessage.Create(
+        Format(strAutoSaveMsg, [ExtractFileName(strFileName)]),
+        Settings.MessageColour,
+        Settings.MessageStyle
+      ));
 End;
 
 (**

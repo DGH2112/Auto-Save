@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
 
 **)
 Unit DGHIDEAutoSave.Wizard;
@@ -16,13 +16,14 @@ Uses
   VCL.Extctrls,
   VCL.Menus,
   DGHIDEAutoSave.Interfaces,
-  DGHIDEAutoSave.IDEOptionsInterface, DGHIDEAutoSave.ResourceStrings;
+  DGHIDEAutoSave.IDEOptionsInterface,
+  DGHIDEAutoSave.ResourceStrings;
 
 {$INCLUDE CompilerDefinitions.inc}
 
 Type
   (** This class represents a the open tools API wizard for the IDE auto save. **)
-  TDGHAutoSaveWizard = Class(TNotifierObject, IOTAWizard, IOTAMenuWizard)
+  TDGHAutoSaveWizard = Class(TNotifierObject, IUnknown, IOTANotifier, IOTAWizard, IOTAMenuWizard)
   Strict Private
     FTimer: TTimer;
     FCounter: Integer;

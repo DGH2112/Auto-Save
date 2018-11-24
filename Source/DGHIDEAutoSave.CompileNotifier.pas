@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
   
 **)
 Unit DGHIDEAutoSave.CompileNotifier;
@@ -17,7 +17,7 @@ Uses
 
 Type
   (** A class to implement the IOTACompileNotifier interface. **)
-  TDGHIDEAutoSaveCompileNotifier = Class(TInterfacedObject, IOTACompileNotifier)
+  TDGHIDEAutoSaveCompileNotifier = Class(TInterfacedObject, IInterface, IOTACompileNotifier)
   Strict Private
     Class Var
       (** A class variable to hold the comppile notifier index. **)

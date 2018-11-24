@@ -4,7 +4,7 @@
   
   @Author  David Hoyle
   @Version 2.1
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
 
   @nocheck EmptyBEGINEND
   
@@ -33,7 +33,8 @@ uses
   DGHIDEAutoSave.ResourceStrings in 'Source\DGHIDEAutoSave.ResourceStrings.pas',
   DGHIDEAutoSave.Interfaces in 'Source\DGHIDEAutoSave.Interfaces.pas',
   DGHIDEAutoSave.Constants in 'Source\DGHIDEAutoSave.Constants.pas',
-  DGHIDEAutoSave.AboutBox in 'Source\DGHIDEAutoSave.AboutBox.pas';
+  DGHIDEAutoSave.AboutBox in 'Source\DGHIDEAutoSave.AboutBox.pas',
+  DGHIDEAutoSave.CustomMessage in 'Source\DGHIDEAutoSave.CustomMessage.pas';
 
 {$R *.res}
 
