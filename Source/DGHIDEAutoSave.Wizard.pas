@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
 
 **)
 Unit DGHIDEAutoSave.Wizard;
@@ -16,7 +16,8 @@ Uses
   VCL.Extctrls,
   VCL.Menus,
   DGHIDEAutoSave.Interfaces,
-  DGHIDEAutoSave.IDEOptionsInterface, DGHIDEAutoSave.ResourceStrings;
+  DGHIDEAutoSave.IDEOptionsInterface,
+  DGHIDEAutoSave.ResourceStrings;
 
 {$INCLUDE CompilerDefinitions.inc}
 

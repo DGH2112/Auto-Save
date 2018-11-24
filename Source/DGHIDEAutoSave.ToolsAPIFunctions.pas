@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    26 Jul 2018
+  @Date    28 Oct 2018
   
 **)
 Unit DGHIDEAutoSave.ToolsAPIFunctions;
@@ -32,10 +32,8 @@ Type
 Implementation
 
 Uses
-  {$IFDEF DEBUG}
-  CodeSiteLogging,
-  {$ENDIF}
-  System.SysUtils, DGHIDEAutoSave.CustomMessage;
+  System.SysUtils,
+  DGHIDEAutoSave.CustomMessage;
 
 (**
 
