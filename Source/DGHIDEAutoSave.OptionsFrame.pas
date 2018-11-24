@@ -5,7 +5,7 @@
 
   @Version 1.1
   @Author  David Hoyle
-  @Date    26 Jul 2018
+  @Date    28 Oct 2018
 
 **)
 Unit DGHIDEAutoSave.OptionsFrame;
@@ -48,6 +48,7 @@ Type
     chkUnderline: TCheckBox;
     chkStrikeout: TCheckBox;
     gpnlFontStyles: TGridPanel;
+    pnlFudgePanel: TPanel;
     Procedure chkEnabledClick(Sender: TObject);
     procedure chkMessagesClick(Sender: TObject);
   Private

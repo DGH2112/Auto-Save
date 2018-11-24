@@ -4,7 +4,7 @@
 
   @Author  David Hoyle
   @Version 1.0
-  @Date    13 Jul 2018
+  @Date    28 Oct 2018
   
 **)
 Unit DGHIDEAutoSave.ResourceStrings;
@@ -19,7 +19,7 @@ ResourceString
       box. **)
   strSplashScreenBuild = 'Freeware by David Hoyle (Build %d.%d.%d.%d)';
   (** A resource string to describe the IDE Options path in its tree. **)
-  strIDEAutoSaveOptions = 'DGH IDE Auto Save.Options';
+  strIDEAutoSaveOptions = 'DGH IDE Auto Save';
 
 
 Implementation
