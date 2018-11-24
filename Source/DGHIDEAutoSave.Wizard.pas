@@ -22,7 +22,7 @@ Uses
 
 Type
   (** This class represents a the open tools API wizard for the IDE auto save. **)
-  TDGHAutoSaveWizard = Class(TNotifierObject, IOTAWizard, IOTAMenuWizard)
+  TDGHAutoSaveWizard = Class(TNotifierObject, IUnknown, IOTANotifier, IOTAWizard, IOTAMenuWizard)
   Strict Private
     FTimer: TTimer;
     FCounter: Integer;
