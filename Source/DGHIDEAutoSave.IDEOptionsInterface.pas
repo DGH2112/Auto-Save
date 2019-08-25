@@ -5,7 +5,26 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    28 Oct 2018
+  @Date    25 Aug 2019
+
+  @license
+  
+    DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
+    periodically as you work.
+    
+    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
 
 **)
 Unit DGHIDEAutoSave.IDEOptionsInterface;
@@ -19,15 +38,16 @@ Uses
   DGHIDEAutoSave.OptionsFrame,
   DGHIDEAutoSave.ResourceStrings;
 
-{$INCLUDE CompilerDefinitions.inc}
-
-{$IFDEF DXE00}
 Type
+  (** An enumerate to define the frame type to be created. **)
+  TDIASFrameType = (ftParent, ftOptions);
+
   (** A class to create an options frame page for the IDEs options dialogue. **)
   TDGHIDEAutoSaveOptionsInterface = Class(TInterfacedObject, INTAAddInOptions)
   Strict Private
-    FFrame: TfmIDEAutoSaveOptions;
-    FSettings : IDGHIDEAutoSaveSettings;
+    FFrame     : TfmIDEAutoSaveOptions;
+    FSettings  : IDGHIDEAutoSaveSettings;
+    FFrameType : TDIASFrameType;
   Strict Protected
     Procedure DialogClosed(Accepted: Boolean);
     Procedure FrameCreated(AFrame: TCustomFrame);
@@ -38,19 +58,15 @@ Type
     Function IncludeInIDEInsight: Boolean;
     Function ValidateContents: Boolean;
   Public
-    Constructor Create(Const Settings : IDGHIDEAutoSaveSettings);
+    Constructor Create(Const Settings : IDGHIDEAutoSaveSettings; Const eFrameType : TDIASFrameType);
   End;
-{$ENDIF}
 
 Implementation
 
-{TDGHAutoSaveOptions}
-
 Uses
   DGHIDEAutoSave.Types,
-  DGHIDEAutoSave.Settings;
-
-{$IFDEF DXE00}
+  DGHIDEAutoSave.Settings,
+  DGHIDEAutoSave.ParentFrame;
 
 (**
 
@@ -59,13 +75,16 @@ Uses
   @precon  None.
   @postcon Saves a reference to the settings interface.
 
-  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+  @param   Settings   as an IDGHIDEAutoSaveSettings as a constant
+  @param   eFrameType as a TDIASFrameType as a constant
 
 **)
-Constructor TDGHIDEAutoSaveOptionsInterface.Create(Const Settings : IDGHIDEAutoSaveSettings);
+Constructor TDGHIDEAutoSaveOptionsInterface.Create(Const Settings : IDGHIDEAutoSaveSettings;
+  Const eFrameType : TDIASFrameType);
 
 Begin
   FSettings := Settings;
+  FFrameType := eFrameType;
 End;
 
 (**
@@ -87,7 +106,8 @@ Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 
 Begin
   If Accepted Then
-    FFrame.FinaliseFrame(FSettings);
+    If FFrame Is TfmIDEAutoSaveOptions Then
+      FFrame.FinaliseFrame(FSettings);
 End;
 
 (**
@@ -146,7 +166,11 @@ End;
 Function TDGHIDEAutoSaveOptionsInterface.GetCaption: String;
 
 Begin
-  Result := strIDEAutoSaveOptions;
+  Case FFrameType Of
+    ftParent:  Result := strIDEAutoSave;
+    ftOptions: Result := strIDEAutoSaveOptions;
+  End;
+  
 End;
 
 (**
@@ -163,7 +187,11 @@ End;
 Function TDGHIDEAutoSaveOptionsInterface.GetFrameClass: TCustomFrameClass;
 
 Begin
-  Result := TfmIDEAutoSaveOptions;
+  Result := Nil;
+  Case FFrameType Of
+    ftParent:  Result := TfmDIASParentFrame;
+    ftOptions: Result := TfmIDEAutoSaveOptions;
+  End;
 End;
 
 (**
@@ -220,6 +248,5 @@ Begin
   Val(FFrame.edtAutosaveInterval.Text, iInterval, iErrorCode);
   Result := (iErrorCode = 0) And (iInterval > 0);
 End;
-{$ENDIF}
 
 End.

@@ -6,6 +6,25 @@
   @Author  David Hoyle
   @Date    25 Aug 2019
 
+  @license
+  
+    DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
+    periodically as you work.
+    
+    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+
 **)
 Unit DGHIDEAutoSave.Wizard;
 
@@ -19,18 +38,15 @@ Uses
   DGHIDEAutoSave.IDEOptionsInterface,
   DGHIDEAutoSave.ResourceStrings;
 
-{$INCLUDE CompilerDefinitions.inc}
-
 Type
   (** This class represents a the open tools API wizard for the IDE auto save. **)
-  TDGHAutoSaveWizard = Class(TNotifierObject, IUnknown, IOTANotifier, IOTAWizard, IOTAMenuWizard)
+  TDGHAutoSaveWizard = Class(TNotifierObject, IUnknown, IOTANotifier, IOTAWizard)
   Strict Private
-    FTimer: TTimer;
-    FCounter: Integer;
-    {$IFDEF DXE00}
-    FOpFrame: TDGHIDEAutoSaveOptionsInterface;
-    {$ENDIF}
-    FSettings : IDGHIDEAutoSaveSettings;
+    FTimer       : TTimer;
+    FCounter     : Integer;
+    FOpFrame     : TDGHIDEAutoSaveOptionsInterface;
+    FParentFrame : TDGHIDEAutoSaveOptionsInterface;
+    FSettings    : IDGHIDEAutoSaveSettings;
   Strict Protected
   Public
     Constructor Create;
@@ -40,7 +56,6 @@ Type
     Function  GetIDString: String;
     Function  GetState: TWizardState;
     Procedure TimerEvent(Sender: TObject);
-    Function  GetMenuText : String;
   End;
 
 Implementation
@@ -52,7 +67,6 @@ Uses
   System.SysUtils,
   VCL.Forms,
   Winapi.Windows,
-  DGHIDEAutoSave.OptionsForm,
   DGHIDEAutoSave.Settings,
   DGHIDEAutoSave.SplashScreen,
   DGHIDEAutoSave.AboutBox,
@@ -84,10 +98,10 @@ Begin
   FTimer.Interval := iOneSecond;
   FTimer.OnTimer := TimerEvent;
   FTimer.Enabled := True;
-  {$IFDEF DXE00}
-  FOpFrame := TDGHIDEAutoSaveOptionsInterface.Create(FSettings);
+  FParentFrame := TDGHIDEAutoSaveOptionsInterface.Create(FSettings, ftParent);
+  (BorlandIDEServices As INTAEnvironmentOptionsServices).RegisterAddInOptions(FParentFrame);
+  FOpFrame := TDGHIDEAutoSaveOptionsInterface.Create(FSettings, ftOptions);
   (BorlandIDEServices As INTAEnvironmentOptionsServices).RegisterAddInOptions(FOpFrame);
-  {$ENDIF}
 End;
 
 (**
@@ -103,10 +117,9 @@ Destructor TDGHAutoSaveWizard.Destroy;
 
 Begin
   FTimer.Free;
-  {$IFDEF DXE00}
   (BorlandIDEServices As INTAEnvironmentOptionsServices).UnregisterAddInOptions(FOpFrame);
+  (BorlandIDEServices As INTAEnvironmentOptionsServices).UnregisterAddInOptions(FParentFrame);
   FOpFrame := Nil;
-  {$ENDIF}
   TDGHIDEAutoSaveCompileNotifier.UninstallIDECompilationEventHandler;
   TDGHIDEAutoSaveAboutBox.RemoveAboutBox;
   FSettings := Nil;
@@ -120,15 +133,13 @@ End;
   @precon  None.
   @postcon None - Options dialogue is in the IDEs Options.
 
+  @nocheck EmptyMethod
+
 **)
 Procedure TDGHAutoSaveWizard.Execute;
 
 Begin
-  {$IFDEF DXE00}
-  (BorlandIDEServices As IOTAServices).GetEnvironmentOptions.EditOptions('', strIDEAutoSaveOptions);
-  {$ELSE}
-  TfrmAutoSaveOptions.Execute;
-  {$ENDIF}
+  // Does nothing
 End;
 
 (**
@@ -149,25 +160,6 @@ ResourceString
 
 Begin
   Result := strSeasonFallDGHAutoSave;
-End;
-
-(**
-
-  This returns the menu text for the menu that appears under the help menu..
-
-  @precon  None.
-  @postcon Returns the menu text for the menu that appears under the help menu..
-
-  @return  a String
-
-**)
-Function TDGHAutoSaveWizard.GetMenuText: String;
-
-ResourceString
-  strIDEAutoSaveOptions = 'DGH IDE Auto Save Options...';
-
-Begin
-  Result := strIDEAutoSaveOptions;
 End;
 
 (**

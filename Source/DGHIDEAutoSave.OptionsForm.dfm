@@ -18,7 +18,7 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
     335
     349)
   PixelsPerInch = 96
-  TextHeight = 16
+  TextHeight = 13
   object btnCancel: TBitBtn
     Left = 252
     Top = 316
@@ -28,8 +28,6 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
     Kind = bkCancel
     NumGlyphs = 2
     TabOrder = 2
-    ExplicitLeft = 329
-    ExplicitTop = 266
   end
   object btnOK: TBitBtn
     Left = 171
@@ -40,8 +38,6 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
     Kind = bkOK
     NumGlyphs = 2
     TabOrder = 1
-    ExplicitLeft = 248
-    ExplicitTop = 266
   end
   object pnlFrame: TPanel
     Left = 8
@@ -51,7 +47,5 @@ object frmAutoSaveOptions: TfrmAutoSaveOptions
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 396
-    ExplicitHeight = 252
   end
 end
