@@ -1,3 +1,33 @@
+(**
+
+  An include unit to define compiler suffixes for the output DLL so that
+  a single DPR/DPROJ pairing can gernate all the various DLLs from one
+  project source.
+
+  @Version 1.0
+  @Date    25 Aug 2019
+  @Author  David Hoyle
+
+  @license
+  
+    Auto Save is a RAD Studio plug-in to automatically save your code
+    periodically as you work.
+    
+    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+
+**)
 {$IFDEF DXE103}
   {$LIBSUFFIX 'XE103'}
 {$ELSE}
