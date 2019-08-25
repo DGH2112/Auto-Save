@@ -36,9 +36,17 @@ ResourceString
   strSplashScreenName = 'DGH AutoSave %d.%d%s for %s';
   (** A resource string for the build number of the plug-in on the splash screen and in the about
       box. **)
-  strSplashScreenBuild = 'Freeware by David Hoyle (Build %d.%d.%d.%d)';
+  {$IFDEF DEBUG}
+  (** This is another message string to appear in the BDS 2005/6 splash screen **)
+  strSplashScreenBuild = 'David Hoyle (c) 2019 License GNU GPL 3 (DEBUG Build %d.%d.%d.%d)';
+  {$ELSE}
+  (** This is another message string to appear in the BDS 2005/6 splash screen **)
+  strSplashScreenBuild = 'David Hoyle (c) 2019 License GNU GPL 3 (Build %d.%d.%d.%d)';
+  {$ENDIF}
   (** A resource string to describe the IDE Options path in its tree. **)
-  strIDEAutoSaveOptions = 'DGH IDE Auto Save';
+  strIDEAutoSave = 'DGH IDE Auto Save';
+  (** A resource string to describe the IDE Options path in its tree. **)
+  strIDEAutoSaveOptions = 'DGH IDE Auto Save.Options';
 
 
 Implementation
