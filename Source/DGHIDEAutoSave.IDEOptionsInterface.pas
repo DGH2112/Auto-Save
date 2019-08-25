@@ -38,15 +38,16 @@ Uses
   DGHIDEAutoSave.OptionsFrame,
   DGHIDEAutoSave.ResourceStrings;
 
-{$INCLUDE CompilerDefinitions.inc}
-
-{$IFDEF DXE00}
 Type
+  (** An enumerate to define the frame type to be created. **)
+  TDIASFrameType = (ftParent, ftOptions);
+
   (** A class to create an options frame page for the IDEs options dialogue. **)
   TDGHIDEAutoSaveOptionsInterface = Class(TInterfacedObject, INTAAddInOptions)
   Strict Private
-    FFrame: TfmIDEAutoSaveOptions;
-    FSettings : IDGHIDEAutoSaveSettings;
+    FFrame     : TfmIDEAutoSaveOptions;
+    FSettings  : IDGHIDEAutoSaveSettings;
+    FFrameType : TDIASFrameType;
   Strict Protected
     Procedure DialogClosed(Accepted: Boolean);
     Procedure FrameCreated(AFrame: TCustomFrame);
@@ -57,19 +58,15 @@ Type
     Function IncludeInIDEInsight: Boolean;
     Function ValidateContents: Boolean;
   Public
-    Constructor Create(Const Settings : IDGHIDEAutoSaveSettings);
+    Constructor Create(Const Settings : IDGHIDEAutoSaveSettings; Const eFrameType : TDIASFrameType);
   End;
-{$ENDIF}
 
 Implementation
 
-{TDGHAutoSaveOptions}
-
 Uses
   DGHIDEAutoSave.Types,
-  DGHIDEAutoSave.Settings;
-
-{$IFDEF DXE00}
+  DGHIDEAutoSave.Settings,
+  DGHIDEAutoSave.ParentFrame;
 
 (**
 
@@ -78,13 +75,16 @@ Uses
   @precon  None.
   @postcon Saves a reference to the settings interface.
 
-  @param   Settings as an IDGHIDEAutoSaveSettings as a constant
+  @param   Settings   as an IDGHIDEAutoSaveSettings as a constant
+  @param   eFrameType as a TDIASFrameType as a constant
 
 **)
-Constructor TDGHIDEAutoSaveOptionsInterface.Create(Const Settings : IDGHIDEAutoSaveSettings);
+Constructor TDGHIDEAutoSaveOptionsInterface.Create(Const Settings : IDGHIDEAutoSaveSettings;
+  Const eFrameType : TDIASFrameType);
 
 Begin
   FSettings := Settings;
+  FFrameType := eFrameType;
 End;
 
 (**
@@ -106,7 +106,8 @@ Procedure TDGHIDEAutoSaveOptionsInterface.DialogClosed(Accepted: Boolean);
 
 Begin
   If Accepted Then
-    FFrame.FinaliseFrame(FSettings);
+    If FFrame Is TfmIDEAutoSaveOptions Then
+      FFrame.FinaliseFrame(FSettings);
 End;
 
 (**
@@ -165,7 +166,11 @@ End;
 Function TDGHIDEAutoSaveOptionsInterface.GetCaption: String;
 
 Begin
-  Result := strIDEAutoSaveOptions;
+  Case FFrameType Of
+    ftParent:  Result := strIDEAutoSave;
+    ftOptions: Result := strIDEAutoSaveOptions;
+  End;
+  
 End;
 
 (**
@@ -182,7 +187,11 @@ End;
 Function TDGHIDEAutoSaveOptionsInterface.GetFrameClass: TCustomFrameClass;
 
 Begin
-  Result := TfmIDEAutoSaveOptions;
+  Result := Nil;
+  Case FFrameType Of
+    ftParent:  Result := TfmDIASParentFrame;
+    ftOptions: Result := TfmIDEAutoSaveOptions;
+  End;
 End;
 
 (**
@@ -239,6 +248,5 @@ Begin
   Val(FFrame.edtAutosaveInterval.Text, iInterval, iErrorCode);
   Result := (iErrorCode = 0) And (iInterval > 0);
 End;
-{$ENDIF}
 
 End.
