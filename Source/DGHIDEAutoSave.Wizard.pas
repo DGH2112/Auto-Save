@@ -231,10 +231,12 @@ Begin
     Inc(FCounter);
     If FCounter >= FSettings.Interval Then
       Begin
-        FCounter := 0;
         If FSettings.Enabled Then
           If IsWindowEnabled(Application.MainForm.Handle) Then
-            TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings)
+            Begin
+              FCounter := 0;
+              TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings);
+            End
           {$IFDEF DEBUG}
           Else
             CodeSite.SendFmtMsg(strIDEInModalState, [Application.ModalLevel])
