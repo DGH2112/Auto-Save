@@ -4,7 +4,7 @@
 
   @Version 2.1
   @Author  David Hoyle
-  @Date    28 Oct 2018
+  @Date    25 Aug 2019
 
 **)
 Unit DGHIDEAutoSave.Wizard;
@@ -46,7 +46,12 @@ Type
 Implementation
 
 Uses
+  {$IFDEF DEBUG}
+  CodeSiteLogging,
+  {$ENDIF}
   System.SysUtils,
+  VCL.Forms,
+  Winapi.Windows,
   DGHIDEAutoSave.OptionsForm,
   DGHIDEAutoSave.Settings,
   DGHIDEAutoSave.SplashScreen,
@@ -215,6 +220,11 @@ End;
 **)
 Procedure TDGHAutoSaveWizard.TimerEvent(Sender: TObject);
 
+{$IFDEF DEBUG}
+Const
+  strIDEInModalState = 'IDE is in a modal state (%d)!';
+{$ENDIF DEBUG}
+
 Begin
   FTimer.Enabled := False;
   Try
@@ -223,7 +233,13 @@ Begin
       Begin
         FCounter := 0;
         If FSettings.Enabled Then
-          TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings);
+          If IsWindowEnabled(Application.MainForm.Handle) Then
+            TDGHIDEAutoSaveToolsAPIFunctions.SaveAllModifiedFiles(FSettings)
+          {$IFDEF DEBUG}
+          Else
+            CodeSite.SendFmtMsg(strIDEInModalState, [Application.ModalLevel])
+          {$ENDIF DEBUG}
+          ;
       End;
   Finally
     FTimer.Enabled := True;
