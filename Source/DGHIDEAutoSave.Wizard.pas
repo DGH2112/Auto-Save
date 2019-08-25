@@ -8,7 +8,7 @@
 
   @license
   
-    Auto Save is a RAD Studio plug-in to automatically save your code
+    DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
     periodically as you work.
     
     Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)

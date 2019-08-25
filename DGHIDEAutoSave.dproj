@@ -106,9 +106,6 @@
             <Form>fmIDEAutoSaveOptions</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="Source\DGHIDEAutoSave.OptionsForm.pas">
-            <Form>frmAutoSaveOptions</Form>
-        </DCCReference>
         <DCCReference Include="Source\DGHIDEAutoSave.InitializationModule.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.IDEOptionsInterface.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.Functions.pas"/>
@@ -120,6 +117,11 @@
         <DCCReference Include="Source\DGHIDEAutoSave.Constants.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.AboutBox.pas"/>
         <DCCReference Include="Source\DGHIDEAutoSave.CustomMessage.pas"/>
+        <DCCReference Include="Source\DGHIDEAutoSave.ParentFrame.pas">
+            <Form>fmDIASParentFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <None Include="Source\CompilerDefinitions.inc"/>
         <None Include="README.md"/>
         <None Include="License.md"/>
