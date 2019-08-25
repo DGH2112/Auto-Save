@@ -1,11 +1,10 @@
- DGH IDE Auto Save
-===================
+# DGH IDE Auto Save
 
-Author: David Hoyle
+Author:   David Hoyle
 
-Version: 2.2
+Version:  2.2a
 
-Date: 24 Nov 2018
+Date:     25 Aug 2019
 
 Web Page: http://www.davidghoyle.co.uk/WordPress/?page_id=918
 
