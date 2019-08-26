@@ -5,7 +5,7 @@
 
   @Author  David Hoyle
   @Version 1.1
-  @Date    25 Aug 2019
+  @Date    26 Aug 2019
 
   @license
   
@@ -245,8 +245,12 @@ Var
   iErrorCode: Integer;
 
 Begin
-  Val(FFrame.edtAutosaveInterval.Text, iInterval, iErrorCode);
-  Result := (iErrorCode = 0) And (iInterval > 0);
+  Result := True;
+  If FFrameType In [ftOptions] Then
+    Begin
+      Val(FFrame.edtAutosaveInterval.Text, iInterval, iErrorCode);
+      Result := (iErrorCode = 0) And (iInterval > 0);
+    End;
 End;
 
 End.
