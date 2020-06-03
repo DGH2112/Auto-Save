@@ -8,7 +8,7 @@ CompileWithBRCC32=0
 MajorVer=2
 MinorVer=2
 ReleaseVer=2
-BuildVer=246
+BuildVer=247
 ResourceName=DGHIDEAutoSaveITHVerInfo
 WarnBefore=0
 WarnAfter=0
@@ -23,7 +23,7 @@ ExclusionFiles=
 [VersionInfo]
 CompanyName=Season's Fall Music
 FileDescription=IDE AutoSave - An auto save wizard for RAD Studio
-FileVersion=2.2.2.246
+FileVersion=2.2.2.247
 InternalName=IDEAutoSave
 LegalCopyright=Season's Fall Music
 LegalTrademarks=Season's Fall Music
