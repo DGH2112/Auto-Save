@@ -128,10 +128,10 @@ object fmIDEAutoSaveOptions: TfmIDEAutoSaveOptions
         BevelOuter = bvNone
         ColumnCollection = <
           item
-            Value = 50.000000000000000000
+            Value = 49.917616842314120000
           end
           item
-            Value = 50.000000000000000000
+            Value = 50.131926121372030000
           end>
         ControlCollection = <
           item

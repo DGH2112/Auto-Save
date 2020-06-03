@@ -74,7 +74,6 @@ object fmDIASParentFrame: TfmDIASParentFrame
     Font.Style = []
     ParentFont = False
     Layout = tlCenter
-    ExplicitTop = 478
     ExplicitWidth = 220
   end
   object lblBuildDate: TLabel
@@ -130,6 +129,5 @@ object fmDIASParentFrame: TfmDIASParentFrame
     ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 0
-    ExplicitHeight = 368
   end
 end

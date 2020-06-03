@@ -226,3 +226,4 @@ pip-log.txt
 OLD DLLs/
 *.dsk
 *.tvsconfig
+*.res
