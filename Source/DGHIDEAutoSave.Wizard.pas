@@ -2,16 +2,16 @@
 
   This module contains a class to represent the experts main wizard interface.
 
-  @Version 2.1
+  @Version 2.101
   @Author  David Hoyle
-  @Date    25 Aug 2019
+  @Date    03 Jun 2020
 
   @license
   
     DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
     periodically as you work.
     
-    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+    Copyright (C) 2020  David Hoyle (https://github.com/DGH2112/Auto-Save/)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

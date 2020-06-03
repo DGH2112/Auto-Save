@@ -3,8 +3,8 @@
   This method contains a Delphi IDE wizard that auto saves the modules at a
   specified interval.
 
-  @Date    25 Aug 2019
-  @Version 2.1
+  @Date    03 Jun 2020
+  @Version 2.101
   @Author  David Hoyle
 
   @license
@@ -12,7 +12,7 @@
     DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
     periodically as you work.
     
-    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+    Copyright (C) 2020  David Hoyle (https://github.com/DGH2112/Auto-Save/)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
