@@ -4,16 +4,16 @@
   definition exists it means that that version of the compiler or high is
   available.
 
-  @Version 1.0
-  @Date    25 Aug 2019
+  @Version 1.064
+  @Date    03 Jun 2020
   @Author  David Hoyle
 
   @license
-  
+
     DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
     periodically as you work.
-    
-    Copyright (C) 2019  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+
+    Copyright (C) 2020  David Hoyle (https://github.com/DGH2112/Auto-Save/)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -461,7 +461,7 @@
   {$DEFINE DXE102}
 {$ENDIF}
 
-// Embarcadero Delphi XE10.3 ###### (Studio 20.0), Version 26, Package version 260
+// Embarcadero Delphi XE10.3 Rio (Studio 20.0), Version 26, Package version 260
 {$IFDEF VER330}
   {$DEFINE D0001}
   {$DEFINE D0002}
@@ -488,6 +488,36 @@
   {$DEFINE DXE101}
   {$DEFINE DXE102}
   {$DEFINE DXE103}
+{$ENDIF}
+
+// Embarcadero Delphi XE10.4 Sydney (Studio 21.0), Version 27, Package version 270
+{$IFDEF VER340}
+  {$DEFINE D0001}
+  {$DEFINE D0002}
+  {$DEFINE D0003}
+  {$DEFINE D0004}
+  {$DEFINE D0005}
+  {$DEFINE D0006}
+  {$DEFINE D0007}
+  {$DEFINE D0008}
+  {$DEFINE D2005}
+  {$DEFINE D2006}
+  {$DEFINE D2007}
+  {$DEFINE D2009}
+  {$DEFINE D2010}
+  {$DEFINE DXE00}
+  {$DEFINE DXE20}
+  {$DEFINE DXE30}
+  {$DEFINE DXE40}
+  {$DEFINE DXE50}
+  {$DEFINE DXE60}
+  {$DEFINE DXE70}
+  {$DEFINE DXE80}
+  {$DEFINE DXE100}
+  {$DEFINE DXE101}
+  {$DEFINE DXE102}
+  {$DEFINE DXE103}
+  {$DEFINE DXE104}
 {$ENDIF}
 
 {$IFNDEF D0001}
