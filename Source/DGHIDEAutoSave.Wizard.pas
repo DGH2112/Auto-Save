@@ -2,9 +2,9 @@
 
   This module contains a class to represent the experts main wizard interface.
 
-  @Version 2.101
+  @Version 2.103
   @Author  David Hoyle
-  @Date    03 Jun 2020
+  @Date    30 Dec 2021
 
   @license
   
@@ -78,7 +78,7 @@ Uses
   This is the constructor method for the TDGHAutoSavewizard class.
 
   @precon  None.
-  @postcon Creates an internal timer for the autosave functionality and creates the
+  @postcon Creates an internal timer for the auto save functionality and creates the
            options frame interface to be displayed in the IDEs Options dialogue.
 
 **)
@@ -156,7 +156,7 @@ End;
 Function TDGHAutoSaveWizard.GetIDString: String;
 
 ResourceString
-  strSeasonFallDGHAutoSave = 'Season''s Fall.DGH IDE Auto Save';
+  strSeasonFallDGHAutoSave = 'David Hoyle.DGH IDE Auto Save';
 
 Begin
   Result := strSeasonFallDGHAutoSave;
@@ -204,7 +204,7 @@ End;
   appropriate time has elapsed.
 
   @precon  Sender is the control that initiated the event.
-  @postcon If the time interval has elasped and the auto save functionality is enabled
+  @postcon If the time interval has elapsed and the auto save functionality is enabled
            the modified files are saved.
 
   @param   Sender as a TObject

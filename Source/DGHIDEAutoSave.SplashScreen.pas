@@ -3,8 +3,8 @@
   This module contains code for installing a splash screen in the IDE for the plug-in.
 
   @Author  David Hoyle
-  @Version 1.001
-  @Date    03 Jun 2020
+  @Version 1.119
+  @Date    30 Dec 2021
   
   @license
   
@@ -47,7 +47,11 @@ Implementation
 
 Uses
   System.SysUtils,
+  {$IFDEF RS110}
+  Graphics,
+  {$ELSE}
   WinApi.Windows,
+  {$ENDIF RS110}
   VCL.Forms,
   DGHIDEAutoSave.Functions,
   DGHIDEAutoSave.ResourceStrings,
@@ -69,27 +73,38 @@ Const
 Var
   SSS : IOTASplashScreenServices;
   VersionInfo : TVersionInfo;
+  {$IFDEF RS110}
+  SplashScreenBitMap : TBitMap;
+  {$ELSE}
   bmSplashScreen : HBITMAP;
+  {$ENDIF RS110}
   
 Begin
   BuildNumber(VersionInfo);
-  bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
   If Supports(SplashScreenServices, IOTASplashScreenServices, SSS) Then
     Begin
+      {$IFDEF RS110}
+      SplashScreenBitMap := TBitMap.Create;
+      Try
+        SplashScreenBitMap.LoadFromResourceName(hInstance, strSplashScreenBitMap);
+        SSS.AddPluginBitmap(
+          Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision, VersionInfo.iBugFix + 1, 1), Application.Title]),
+          [SplashScreenBitMap],
+          {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
+          Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix, VersionInfo.iBuild])
+        );
+      Finally
+        SplashScreenBitMap.Free;
+      End;
+      {$ELSE}
+      bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
       SSS.AddPluginBitmap(
-        Format(strSplashScreenName, [
-          VersionInfo.iMajor,
-          VersionInfo.iMinor,
-          Copy(strRevision, VersionInfo.iBugFix + 1, 1),
-          Application.Title]),
+        Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision, VersionInfo.iBugFix + 1, 1), Application.Title]),
         bmSplashScreen,
         {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
-        Format(strSplashScreenBuild, [
-          VersionInfo.iMajor,
-          VersionInfo.iMinor,
-          VersionInfo.iBugfix,
-          VersionInfo.iBuild])
-        );
+        Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix, VersionInfo.iBuild])
+      );
+      {$ENDIF}
     End;
 End;
 
