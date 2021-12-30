@@ -111,12 +111,12 @@ Begin
       {$ELSE}
       bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
       FAboutBoxIndex := ABS.AddPluginInfo(
-        Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision, VersionInfo.iBugFix + 1, 1), Application.Title]),
+        Format(strSplashScreenName, [VerInfo.iMajor, VerInfo.iMinor, Copy(strRevision, VerInfo.iBugFix + 1, 1), Application.Title]),
         strAutoSaveWizardForRADStudioIDE,
         bmSplashScreen,
         {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
-        Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,VersionInfo.iBuild]),
-        Format(strSKUBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix, VersionInfo.iBuild])
+        Format(strSplashScreenBuild, [VerInfo.iMajor, VerInfo.iMinor, VerInfo.iBugfix,VerInfo.iBuild]),
+        Format(strSKUBuild, [VerInfo.iMajor, VerInfo.iMinor, VerInfo.iBugfix, VerInfo.iBuild])
       );
       {$ENDIF RS110}
     End;
