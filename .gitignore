@@ -227,3 +227,6 @@ OLD DLLs/
 *.dsk
 *.tvsconfig
 *.res
+*.map
+*.dct
+*.drc
