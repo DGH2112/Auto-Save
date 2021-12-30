@@ -3,8 +3,8 @@
   This module contains code in add and remove an about box plug-in entry from the IDE.
 
   @Author  David Hoyle
-  @Version 1.001
-  @Date    03 Jun 2020
+  @Version 1.147
+  @Date    30 Dec 2021
   
   @license
   
@@ -48,9 +48,15 @@ Type
 
 Implementation
 
+{$INCLUDE CompilerDefinitions.inc}
+
 Uses
   System.SysUtils,
+  {$IFDEF RS110}
+  VCL.Graphics,
+  {$ELSE}
   WinAPI.Windows,
+  {$ENDIF RS110}
   VCL.Forms,
   DGHIDEAutoSave.Functions,
   DGHIDEAutoSave.ResourceStrings,
@@ -75,34 +81,44 @@ Const
 
 Var
   ABS : IOTAAboutBoxServices;
+  {$IFDEF RS110}
+  AboutBoxBitMap : TBitMap;
+  {$ELSE}
   bmSplashScreen : HBITMAP;
-  VersionInfo: TVersionInfo;
+  {$ENDIF}
+  VerInfo: TVersionInfo;
 
 Begin
   FAboutBoxIndex := -1;
-  BuildNumber(VersionInfo);
-  bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
+  BuildNumber(VerInfo);
   If Supports(BorlandIDEServices, IOTAABoutBoxServices, ABS) Then
     Begin
+      {$IFDEF RS110}
+      AboutBoxBitMap := TBitMap.Create;
+      Try
+        AboutBoxBitMap.LoadFromResourceName(hInstance, strSplashScreenBitMap);
+        FAboutBoxIndex := ABS.AddPluginInfo(
+          Format(strSplashScreenName, [VerInfo.iMajor, VerInfo.iMinor, Copy(strRevision, VerInfo.iBugFix + 1, 1), Application.Title]),
+          strAutoSaveWizardForRADStudioIDE,
+          [AboutBoxBitMap],
+          {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
+          Format(strSplashScreenBuild, [VerInfo.iMajor, VerInfo.iMinor, VerInfo.iBugfix,VerInfo.iBuild]),
+          Format(strSKUBuild, [VerInfo.iMajor, VerInfo.iMinor, VerInfo.iBugfix, VerInfo.iBuild])
+        );
+      Finally
+        AboutBoxBitMap.Free;
+      End;
+      {$ELSE}
+      bmSplashScreen := LoadBitmap(hInstance, strSplashScreenBitMap);
       FAboutBoxIndex := ABS.AddPluginInfo(
-        Format(strSplashScreenName, [
-          VersionInfo.iMajor,
-          VersionInfo.iMinor,
-          Copy(strRevision, VersionInfo.iBugFix + 1, 1),
-          Application.Title]),
+        Format(strSplashScreenName, [VersionInfo.iMajor, VersionInfo.iMinor, Copy(strRevision, VersionInfo.iBugFix + 1, 1), Application.Title]),
         strAutoSaveWizardForRADStudioIDE,
         bmSplashScreen,
         {$IFDEF DEBUG} True {$ELSE} False {$ENDIF},
-        Format(strSplashScreenBuild, [
-          VersionInfo.iMajor,
-          VersionInfo.iMinor,
-          VersionInfo.iBugfix,
-          VersionInfo.iBuild]),
-        Format(strSKUBuild, [
-          VersionInfo.iMajor,
-          VersionInfo.iMinor,
-          VersionInfo.iBugfix,
-          VersionInfo.iBuild]));
+        Format(strSplashScreenBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix,VersionInfo.iBuild]),
+        Format(strSKUBuild, [VersionInfo.iMajor, VersionInfo.iMinor, VersionInfo.iBugfix, VersionInfo.iBuild])
+      );
+      {$ENDIF RS110}
     End;
 End;
 

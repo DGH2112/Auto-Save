@@ -1,10 +1,10 @@
 (**
 
   An include unit to define compiler suffixes for the output DLL so that
-  a single DPR/DPROJ pairing can gernate all the various DLLs from one
+  a single DPR/DPROJ pairing can generate all the various DLLs from one
   project source.
 
-  @Version 1.071
+  @Version 1.072
   @Date    30 Dec 2021
   @Author  David Hoyle
 
