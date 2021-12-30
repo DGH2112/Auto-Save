@@ -49,4 +49,4 @@ This plug-in uses a timer to periodically iterate the code editor buffers in the
 
 regards
 
-David Hoyle Jun 2020.
+David Hoyle Dec 2021.

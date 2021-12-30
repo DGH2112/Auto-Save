@@ -3,8 +3,8 @@
   This library module contains a definition for a DLL plug-in for RAD Studio.
 
   @Author  David Hoyle
-  @Version 2.101
-  @Date    03 Jun 2020
+  @Version 2.103
+  @Date    30 Dec 2021
 
   @license
   
