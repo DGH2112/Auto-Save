@@ -2,11 +2,11 @@
 
 Author:   David Hoyle (davidghoyle@gmail.com / [https://github.com/DGH2112](https://github.com/DGH2112))
 
-Version:  2.3
+Version:  2.4
 
-Date:     30 Dec 2021
+Date:     14 Nov 2023
 
-Web Page: [http://www.davidghoyle.co.uk/WordPress/?page_id=918](http://www.davidghoyle.co.uk/WordPress/?page_id=918)
+Web Page: [https://github.com/DGH2112/Auto-Save](https://github.com/DGH2112/Auto-Save)
 
 ## GNU GENERAL PUBLIC LICENSE
 

@@ -4,8 +4,8 @@
   a single DPR/DPROJ pairing can generate all the various DLLs from one
   project source.
 
-  @Version 1.072
-  @Date    30 Dec 2021
+  @Version 1.093
+  @Date    15 Jul 2023
   @Author  David Hoyle
 
   @license
@@ -13,7 +13,7 @@
     DGH IDE Auto Save is a RAD Studio plug-in to automatically save your code
     periodically as you work.
     
-    Copyright (C) 2020  David Hoyle (https://github.com/DGH2112/Auto-Save/)
+    Copyright (C) 2023  David Hoyle (https://github.com/DGH2112/Auto-Save/)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,61 +28,65 @@
     You should have received a copy of the GNU General Public License
 
 **)
-{$IFDEF RS110}
-  {$LIBSUFFIX 'RS110'}
+{$IFDEF RS120}
+  {$LIBSUFFIX 'RS120'}
 {$ELSE}
-  {$IFDEF RS104}
-    {$LIBSUFFIX 'XE104'}
+  {$IFDEF RS110}
+    {$LIBSUFFIX 'RS110'}
   {$ELSE}
-    {$IFDEF RS103}
-      {$LIBSUFFIX 'XE103'}
+    {$IFDEF RS104}
+      {$LIBSUFFIX 'XE104'}
     {$ELSE}
-      {$IFDEF RS102}
-        {$LIBSUFFIX 'XE102'}
+      {$IFDEF RS103}
+        {$LIBSUFFIX 'XE103'}
       {$ELSE}
-        {$IFDEF RS101}
-          {$LIBSUFFIX 'XE101'}
+        {$IFDEF RS102}
+          {$LIBSUFFIX 'XE102'}
         {$ELSE}
-          {$IFDEF RS100}
-            {$LIBSUFFIX 'XE10'}
+          {$IFDEF RS101}
+            {$LIBSUFFIX 'XE101'}
           {$ELSE}
-            {$IFDEF DXE80}
-              {$LIBSUFFIX 'XE8'}
+            {$IFDEF RS100}
+              {$LIBSUFFIX 'XE10'}
             {$ELSE}
-              {$IFDEF DXE70}
-                {$LIBSUFFIX 'XE7'}
+              {$IFDEF DXE80}
+                {$LIBSUFFIX 'XE8'}
               {$ELSE}
-                {$IFDEF DXE60}
-                  {$LIBSUFFIX 'XE6'}
+                {$IFDEF DXE70}
+                  {$LIBSUFFIX 'XE7'}
                 {$ELSE}
-                  {$IFDEF DXE50}
-                    {$LIBSUFFIX 'XE5'}
+                  {$IFDEF DXE60}
+                    {$LIBSUFFIX 'XE6'}
                   {$ELSE}
-                    {$IFDEF DXE40}
-                      {$LIBSUFFIX 'XE4'}
+                    {$IFDEF DXE50}
+                      {$LIBSUFFIX 'XE5'}
                     {$ELSE}
-                      {$IFDEF DXE30}
-                        {$LIBSUFFIX 'XE3'}
+                      {$IFDEF DXE40}
+                        {$LIBSUFFIX 'XE4'}
                       {$ELSE}
-                        {$IFDEF DXE20}
-                          {$LIBSUFFIX 'XE2'}
+                        {$IFDEF DXE30}
+                          {$LIBSUFFIX 'XE3'}
                         {$ELSE}
-                          {$IFDEF DXE00}
-                            {$LIBSUFFIX 'XE'}
+                          {$IFDEF DXE20}
+                            {$LIBSUFFIX 'XE2'}
                           {$ELSE}
-                            {$IFDEF D2010}
-                              {$LIBSUFFIX '2010'}
+                            {$IFDEF DXE00}
+                              {$LIBSUFFIX 'XE'}
                             {$ELSE}
-                              {$IFDEF D2009}
-                                {$LIBSUFFIX '2009'}
+                              {$IFDEF D2010}
+                                {$LIBSUFFIX '2010'}
                               {$ELSE}
-                                {$IFDEF D2007}
-                                  {$LIBSUFFIX '2007'}
+                                {$IFDEF D2009}
+                                  {$LIBSUFFIX '2009'}
                                 {$ELSE}
-                                  {$IFDEF D2006}
-                                    {$LIBSUFFIX '2006'}
+                                  {$IFDEF D2007}
+                                    {$LIBSUFFIX '2007'}
                                   {$ELSE}
-                                    {$MESSAGE ERROR 'The Condition Definitions need to be updated!!!!!'}
+                                    {$IFDEF D2006}
+                                      {$LIBSUFFIX '2006'}
+                                    {$ELSE}
+                                      {$MESSAGE ERROR 'The Condition Definitions need to be updated!!!!!'}
+                                    {$ENDIF}
                                   {$ENDIF}
                                 {$ENDIF}
                               {$ENDIF}
